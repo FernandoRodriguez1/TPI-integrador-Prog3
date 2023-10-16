@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Fer\\Desktop\\Tpi-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj": {}
+    "C:\\Users\\Fer\\Desktop\\Nueva carpeta (3)\\TPI-integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Fer\\Desktop\\Tpi-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj": {
+    "C:\\Users\\Fer\\Desktop\\Nueva carpeta (3)\\TPI-integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fer\\Desktop\\Tpi-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj",
+        "projectUniqueName": "C:\\Users\\Fer\\Desktop\\Nueva carpeta (3)\\TPI-integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj",
         "projectName": "TPI-Integrador-Prog3",
-        "projectPath": "C:\\Users\\Fer\\Desktop\\Tpi-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj",
+        "projectPath": "C:\\Users\\Fer\\Desktop\\Nueva carpeta (3)\\TPI-integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj",
         "packagesPath": "C:\\Users\\Fer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fer\\Desktop\\Tpi-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3\\obj\\",
+        "outputPath": "C:\\Users\\Fer\\Desktop\\Nueva carpeta (3)\\TPI-integrador-Prog3\\TPI-Integrador-Prog3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Fer\\AppData\\Roaming\\NuGet\\NuGet.Config",

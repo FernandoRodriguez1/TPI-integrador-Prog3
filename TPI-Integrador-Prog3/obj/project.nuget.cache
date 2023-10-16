@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "q56z0QdNK58Wqz/Y779IUlctY9mDn9JfamwevbHI3+aOx5pA1sbLJPZigezelJ39VLHyR6xPyRnmvj8UKQU4Kw==",
+  "dgSpecHash": "CDqVITE8KEXcY8SqE8gi/OQSDtBKKbko0LPWVERf1g98ZWXtqlArCUv2fLFYCmMbl9PVUuxfS8bMdJzLIwo+tg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Fer\\Desktop\\Tpi-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj",
+  "projectFilePath": "C:\\Users\\Fer\\Desktop\\Nueva carpeta (3)\\TPI-integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Fer\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Fer\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.12\\microsoft.entityframeworkcore.7.0.12.nupkg.sha512",
