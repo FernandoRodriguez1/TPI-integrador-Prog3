@@ -3,8 +3,8 @@
     "",
     "\\TPI-Integrador-Prog3",
     "\\TPI-Integrador-Prog3\\Controllers",
-    "\\TPI-Integrador-Prog3\\Services"
+    "\\TPI-Integrador-Prog3\\Models"
   ],
-  "SelectedNode": "\\TPI-Integrador-Prog3.sln",
+  "SelectedNode": "\\TPI-Integrador-Prog3\\Controllers\\AdminController.cs",
   "PreviewInSolutionExplorer": false
 }

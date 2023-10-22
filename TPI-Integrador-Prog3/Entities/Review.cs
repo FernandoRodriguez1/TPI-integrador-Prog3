@@ -2,8 +2,12 @@
 {
     public class Review
     {
-        public string UsernameInReview { get; set; }
-        public int UserRatingInReview { get; set; }
-        public string UserCommentInReview { get; set; }
+        //[ForeignKey("GameId")]
+        //public Games NameGame { get; set; }
+        //public int GameId { get; set; }
+        //[ForeignKey("CreatorClientId")]
+        //public Client Client{ get; set; }
+        //public int ClientId { get; set; }
+
     }
 }
