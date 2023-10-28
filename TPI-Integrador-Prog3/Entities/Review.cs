@@ -13,7 +13,7 @@ namespace TPI_Integrador_Prog3.Entities
             public string Description { get; set; }
             [ForeignKey("AdminId")]
             public Admin Admin { get; set; }
-            public int ProfessorId { get; set; }
+            public int AdminId { get; set; }
             [ForeignKey("CreatorClientId")]
             public Client Client { get; set; }
             public int ClientId { get; set; }

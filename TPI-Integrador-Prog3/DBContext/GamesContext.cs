@@ -46,7 +46,6 @@ namespace TPI_Integrador_Prog3.DBContexts
             modelBuilder.Entity<Admin>().HasData(
                new Admin
                {
-
                    UserName = "Fer",
                    Email = "Fernando@gmail.com",
                    Password = "123456",
@@ -58,6 +57,7 @@ namespace TPI_Integrador_Prog3.DBContexts
                    Email = "Nico@gmail.com",
                    Password = "123456",
                    Id = 5
+
                });
             modelBuilder.Entity<Games>().HasData(
             new Games
@@ -82,51 +82,37 @@ namespace TPI_Integrador_Prog3.DBContexts
                 " la misteriosa secta detrás del rapto.",
                 LastUpdate = new DateTime(2014, 1, 5, 12, 0, 0)
             });
-            modelBuilder.Entity<Review>().HasData(
-                new Review
-                {
-                    Id= 1,
-                    Title = "Un Juegazo",
-                    Description = "Juegazo",
-                    CreationDate = new DateTime(2005, 1, 8, 15, 35, 0),
-                }
-                );
             modelBuilder.Entity<Games>()
                .HasMany(g => g.Clients)
                .WithMany(g => g.Games)
                .UsingEntity(j => j
-                   .ToTable("ClientesGames")
+                   .ToTable("ClientsGames")
                    .HasData(new[]
                        {
-                            new { ClientId = 1, GameId = 1},
-                            new { ClientId= 2, GameId = 1},
-                            new { ClientId= 3, GameId = 1}
+                            new { ClientsId = 1, GamesId = 1},
+                            new { ClientsId= 2, GamesId = 1},
+                            new { ClientsId= 3, GamesId = 1}
                        }
                    ));
+
             modelBuilder.Entity<Games>()
                .HasMany(g => g.Admins)
                .WithMany(a => a.Games)
                .UsingEntity(j => j
-                   .ToTable("AdminsGames")
+                   .ToTable("AdminGames")
                    .HasData(new[]
-                       {
-                            new { AdminId = 1, GameId = 1},
-                            new { AdminId = 2, GameId = 1},
-                       }
+                       { 
+                            new { AdminsId = 4, GamesId = 1},
+                            new { AdminsId = 5, GamesId = 1},
+                        }
                    ));
 
             //Revisar
-            modelBuilder.Entity<Games>()
-               .HasMany(g => g.Reviews)
-               .WithMany(r => r.Games)
-               .UsingEntity(j => j
-                   .ToTable("ReviewGamesAttended")
-                   .HasData(new[]
-                       {
-                            new {  ReviewId = 1, GameId = 1},
-                       }
-                   ));
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.NameGame)
+                .WithMany(g => g.Reviews)
+                .HasForeignKey(r => r.GameId);
         }
-        
+
     }
 }
