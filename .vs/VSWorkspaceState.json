@@ -2,9 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\TPI-Integrador-Prog3",
+    "\\TPI-Integrador-Prog3\\bin",
     "\\TPI-Integrador-Prog3\\Controllers",
+    "\\TPI-Integrador-Prog3\\Data",
     "\\TPI-Integrador-Prog3\\Models"
   ],
-  "SelectedNode": "\\TPI-Integrador-Prog3\\Controllers\\AdminController.cs",
+  "SelectedNode": "\\TPI-Integrador-Prog3.sln",
   "PreviewInSolutionExplorer": false
 }
