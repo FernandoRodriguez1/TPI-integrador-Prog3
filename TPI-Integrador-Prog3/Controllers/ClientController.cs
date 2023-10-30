@@ -19,10 +19,20 @@ namespace TPI_Integrador_Prog3.Controllers
         {
             _clientService = clientService;
         }
-        [HttpGet("{idReview}")]
-        public IActionResult GetReviewxGame([FromQuery]int idReview)
+        [HttpGet]
+        public IActionResult GetGames()
         {
-            return Ok();
+            return Ok(_clientService.GetGames());
+        }
+        [HttpGet("{idGame}")]
+        public IActionResult GetReviewxGame([FromQuery]int idGame)
+        {
+            return Ok(_clientService.GetReviewxGame(idGame));
+        }
+        [HttpPost]
+        public IActionResult AddReviewxGame([FromBody]Review review)
+        {
+            return Ok(_clientService.AddReviewxGame(review));
         }
     }
 }
