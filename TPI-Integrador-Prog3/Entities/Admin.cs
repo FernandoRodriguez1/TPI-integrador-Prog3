@@ -1,6 +1,6 @@
 ﻿namespace TPI_Integrador_Prog3.Entities
 {
-    public class Admin
+    public class Admin : User
     {
         //Tendra que editar reseñas
         public ICollection<Review> Reviews { get; set; }

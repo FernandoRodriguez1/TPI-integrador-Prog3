@@ -1,4 +1,6 @@
-﻿namespace TPI_Integrador_Prog3.Models
+﻿using TPI_Integrador_Prog3.Entities;
+
+namespace TPI_Integrador_Prog3.Models
 {
     public class GamesDto
     {
@@ -11,5 +13,6 @@
         public string Developer { get; set; }
         public string Comments { get; set; }
         public DateTime LastUpdate { get; set; }
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }
