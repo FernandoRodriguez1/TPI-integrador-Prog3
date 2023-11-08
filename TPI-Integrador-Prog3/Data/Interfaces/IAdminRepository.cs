@@ -4,6 +4,8 @@ namespace TPI_Integrador_Prog3.Data.Interfaces
 {
     public interface IAdminRepository
     {
-        Admin? GetAdminById(int userId);
+        Games? RemoveGameById(int gamesId);
+        Review? RemoveReviewById(int reviewId);
+        List<Review> GetReviewsxGame(int gameId);
     }
 }

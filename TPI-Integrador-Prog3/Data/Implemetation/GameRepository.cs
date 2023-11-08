@@ -10,7 +10,7 @@ namespace TPI_Integrador_Prog3.Data.Implemetation
         public GameRepository(GamesContext context) : base(context) 
         { 
         }
-
+        //Revisar
         public Games? GetGames(int gameId)
         {
             return _context.Games

@@ -4,26 +4,43 @@ using TPI_Integrador_Prog3.Services.Interfaces;
 
 namespace TPI_Integrador_Prog3.Services.Implementacion
 {
-    //public class AdminService : IAdminService
-    //{
-    //    private readonly GamesContext _context;
-    //    public AdminService(GamesContext context) 
-    //    {
-    //        _context = context;
-    //    }
-    //    public void DeleteGame(Games games)
-    //    {
-    //        _context.Games.Remove(games);
-    //    }
+    public class AdminService : IAdminService
+    {
+        private readonly GamesContext _context;
+        public AdminService(GamesContext context)
+        {
+            _context = context;
+        }
+        public bool DeleteGame(int gameId)
+        {
+            var game = _context.Games.FirstOrDefault(g => g.Id == gameId);
 
-    //    public void DeleteReview()
-    //    {
-              
-    //    }
+            if (game != null)
+            {
+                _context.Games.Remove(game);
+                _context.SaveChanges();
+                return true;
+            }
 
-    //    public void GetReviewxGame(int idGame)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+            return false;
+        }
+
+        public bool DeleteReview(int reviewId)
+        {
+            var review = _context.Reviews.FirstOrDefault(g => g.Id == reviewId);
+
+            if (review != null)
+            {
+                _context.Reviews.Remove(review);
+                _context.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
+        public List<Review> GetReviews()
+        {
+            return _context.Reviews.ToList();
+        }
+    }
 }

@@ -4,8 +4,8 @@ namespace TPI_Integrador_Prog3.Services.Interfaces
 {
     public interface IAdminService
     {
-        public void GetReviewxGame(int idGame);
-        public void DeleteReview(Games games);
-        public void DeleteGame(int idGame);
+        public List<Review> GetReviews();
+        public bool DeleteReview(int reviewId);
+        public bool DeleteGame(int idGame);
     }
 }
