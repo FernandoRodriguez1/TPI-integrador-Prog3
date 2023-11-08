@@ -1,4 +1,5 @@
-﻿using TPI_Integrador_Prog3.DBContexts;
+﻿using System.Data.Entity;
+using TPI_Integrador_Prog3.DBContexts;
 using TPI_Integrador_Prog3.Entities;
 using TPI_Integrador_Prog3.Models;
 using TPI_Integrador_Prog3.Services.Interfaces;
@@ -20,14 +21,23 @@ namespace TPI_Integrador_Prog3.Services.Implementacion
         }
 
 
-        public List<Review> GetReviewxGame(int idGame)
+        public async Task<IEnumerable<Review>> GetReviewxGameAsync(int idGame)
         {
-            return  _context.Reviews.Where(g => g.GameId == idGame).ToList();
+            return await _context.Reviews.Where(g => g.GameId == idGame).ToListAsync();
         }
 
-        public List<Games> GetGames()
+        public async Task<IEnumerable<Games>> GetGames()
         {
-            return _context.Games.ToList();
+            return await _context.Games.ToListAsync();
+        }
+        public async Task<bool> GameExistsAsync(int idGame)
+        {
+            return await _context.Games.AnyAsync(c => c.Id == idGame);
+        }
+
+        public void DeleteReview(Review review)
+        {
+            _context.Reviews.Remove(review);
         }
     }
 }

@@ -6,7 +6,9 @@ namespace TPI_Integrador_Prog3.Services.Interfaces
     public interface IClientService
     {
         Task AddReviewxGame(Review review);
-        List<Review> GetReviewxGame(int idGame);
-        List<Games> GetGames();
+        Task<IEnumerable<Review>> GetReviewxGameAsync(int idGame);
+        Task<IEnumerable<Games>> GetGames();
+        void DeleteReview(Review review);
+        Task<bool> GameExistsAsync(int idGame);
     }
 }

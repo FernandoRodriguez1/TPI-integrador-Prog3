@@ -9,8 +9,6 @@ namespace TPI_Integrador_Prog3.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        //obtendra las reseñas hechas
-        //obtendra todos los clientes
         // podra eliminar reseña¿?
 
         private readonly IClientService _clientService;
@@ -25,14 +23,20 @@ namespace TPI_Integrador_Prog3.Controllers
             return Ok(_clientService.GetGames());
         }
         [HttpGet("{idGame}")]
-        public IActionResult GetReviewxGame([FromQuery]int idGame)
+        public async Task<ActionResult> GetReviews([FromQuery]int idGame)
         {
-            return Ok(_clientService.GetReviewxGame(idGame));
+            return Ok( await _clientService.GetReviewxGameAsync(idGame));
         }
         [HttpPost]
-        public IActionResult AddReviewxGame([FromBody]Review review)
+        public IActionResult AddReviewxGame([FromBody] Review review)
         {
             return Ok(_clientService.AddReviewxGame(review));
         }
+        [HttpDelete]
+        public Task<ActionResult> DeleteReview(Review review)
+        {
+            return Ok( _clientService.DeleteReview(review));
+        }
+
     }
 }
