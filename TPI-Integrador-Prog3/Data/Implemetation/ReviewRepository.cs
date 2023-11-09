@@ -16,11 +16,6 @@ namespace TPI_Integrador_Prog3.Data.Implemetation
             _context.Reviews.Add(newReview);
         }
 
-        public Review? GetReview(int reviewId)
-        {
-            return _context.Reviews
-                .Include(r => r.Client)
-                .FirstOrDefault(c => c.Id == reviewId);
-        }
+        public IEnumerable<Review> GetReview(int gameid) => _context.Reviews.Where(g => g.GameId == gameid);
     }
 }

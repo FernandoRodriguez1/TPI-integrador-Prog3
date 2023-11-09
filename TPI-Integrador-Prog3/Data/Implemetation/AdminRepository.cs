@@ -29,7 +29,6 @@ namespace TPI_Integrador_Prog3.Data.Implemetation
             if (game != null)
             {
                 _context.Games.Remove(game); // Elimina el juego de la base de datos
-                _context.SaveChanges(); // Guarda los cambios en la base de datos
             }
             return game; // Retorna el juego eliminado (o null si no se encontró)
         }
@@ -39,7 +38,6 @@ namespace TPI_Integrador_Prog3.Data.Implemetation
             if (review != null)
             {
                 _context.Reviews.Remove(review);
-                _context.SaveChanges();
             }
             return review;
         }

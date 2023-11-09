@@ -10,12 +10,17 @@ namespace TPI_Integrador_Prog3.Data.Implemetation
         public GameRepository(GamesContext context) : base(context) 
         { 
         }
-        //Revisar
-        public Games? GetGames(int gameId)
+
+        public void AddGame(Games game)
         {
-            return _context.Games
-                .Include(g => g.Reviews)
-                .FirstOrDefault(c => c.Id == gameId);
+            _context.Games.Add(game);
+            _context.SaveChanges();
+        }
+
+        public void RemoveGame(Games game)
+        {
+            _context.Games.Remove(game);
+            _context.SaveChanges();
         }
     }
 }

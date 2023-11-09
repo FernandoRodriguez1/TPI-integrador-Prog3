@@ -6,6 +6,6 @@ namespace TPI_Integrador_Prog3.Data.Interfaces
     {
         void CreateReview(Review newReview);
 
-        Review? GetReview(int reviewId);
+        IEnumerable<Review> GetReview(int gameid);
     }
 }
