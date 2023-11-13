@@ -1,55 +1,43 @@
-﻿sing TPI_Integrador_Prog3.Models.Reviews;
+﻿using TPI_Integrador_Prog3.Data.Implementations;
+using TPI_Integrador_Prog3.Data.Interfaces;
+using TPI_Integrador_Prog3.Entities;
+using TPI_Integrador_Prog3.Models.Review;
+using TPI_Integrador_Prog3.Services.Interfaces;
 
 namespace TPI_Integrador_Prog3.Services.Implementations
 {
-    public class ReviewService
+
+    public class ReviewService : IReviewService
     {
-        //private readonly IMapper _mapper;
-        //private readonly IQuestionRepository _questionRepository;
-        //private readonly IMailService _mailService;
-        //private readonly IUserRepository _userRepository;
-        //private readonly IHttpContextAccessor _httpContext;
-
-        //public QuestionService(IMapper mapper,
-        //    IQuestionRepository questionRepository,
-        //    IMailService mailService,
-        //    IUserRepository userRepository,
-        //    IHttpContextAccessor httpContext)
-        //{
-        //    _mapper = mapper;
-        //    _questionRepository = questionRepository;
-        //    _mailService = mailService;
-        //    _userRepository = userRepository;
-        //    this._httpContext = httpContext;
-        //}
-
-        public ReviewDto CreateQuestion(ReviewCreate newReviewDto, int userId)
+        private readonly IReviewRepository _reviewRepository;
+        public ReviewService(IReviewRepository reviewRepository)
         {
-            var newQuestion = _mapper.Map<Entities.Question>(newQuestionDto);
-
-            newQuestion.CreatorStudentId = userId;
-
-            var student = _userRepository.GetUserById(userId);
-            var professor = _userRepository.GetUserById(newQuestionDto.ProfessorId);
-
-            _questionRepository.AddQuestion(newQuestion);
-            if (_questionRepository.SaveChanges())
-                _mailService.Send("Se creó una nueva consulta",
-                    $"Usted tiene una nueva consulta asignada por parte del alumno: {student.Name} {student.LastName} ",
-                    professor.Email);
-
-            return _mapper.Map<QuestionDto>(newQuestion);
+            _reviewRepository = reviewRepository;
         }
 
-        public QuestionDto? GetQuestion(int questionId)
+        public IEnumerable<Review> GetReviewsByGameId(int gameId)
         {
-            var consulta = _questionRepository.GetQuestion(questionId);
-            return _mapper.Map<QuestionDto?>(consulta);
+            return _reviewRepository.GetReviewsByGameId(gameId);
+        }
+        public List<Review> GetReviews()
+        {
+            return _reviewRepository.GetAllReviews();
         }
 
-        public bool IsQuestionIdValid(int questionId)
+        public void CreateReview(Review review)
         {
-            return _questionRepository.IsQuestionIdValid(questionId);
+            _reviewRepository.CreateReview(review);
         }
+        public void UpdateReview(Review review)
+        {
+            _reviewRepository.UpdateReview(review);
+        }
+        public void DeleteReview(int reviewId)
+        {
+            _reviewRepository.DeleteReview(reviewId);
+        }
+
+        
     }
+
 }

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "1x0cfjhK+K97QQxK14qcPnFT8xpyZ4cqyDS1/Oq+1V9wSyu8kH55sqRZ3iOZ14QHQnzztaQ1M9KyKjGgCf0swA==",
+  "dgSpecHash": "pKLy5btgNLOxb8Wh2CKBWQhJj9CJBo/VxNgwBRF3y3W5Z7x9tSeiZP9ggpkOLJRFB/AeuApVN5i/vXP/muqs7w==",
   "success": true,
   "projectFilePath": "C:\\Users\\fr300\\OneDrive\\Escritorio\\Tpi\\TPI-integrador-Prog3\\TPI-Integrador-Prog3\\TPI-Integrador-Prog3.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\fr300\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\fr300\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\fr300\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\fr300\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\fr300\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

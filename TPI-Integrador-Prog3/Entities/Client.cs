@@ -1,11 +1,14 @@
-﻿namespace TPI_Integrador_Prog3.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TPI_Integrador_Prog3.Entities
 {
     public class Client : User
     {
-       //Tendra que valorar juegos
-
-       public ICollection<Games> Games { get; set; } = new List<Games>();
-       public ICollection<Review> Reviews { get; set; } = new List<Review>();
+       [Key]
+       public int Id { get; set; }
+       public ICollection<Game> Games { get; set; } 
+       public ICollection<Review> Reviews { get; set; }
 
     }
 }

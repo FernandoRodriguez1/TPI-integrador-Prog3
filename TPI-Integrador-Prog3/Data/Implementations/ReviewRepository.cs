@@ -1,40 +1,44 @@
-﻿namespace TPI_Integrador_Prog3.Data.Implementations
+﻿using System.Data.Entity;
+using TPI_Integrador_Prog3.Data.Interfaces;
+using TPI_Integrador_Prog3.DBContexts;
+using TPI_Integrador_Prog3.Entities;
+
+namespace TPI_Integrador_Prog3.Data.Implementations
 {
-    public class ReviewRepository
+    public class ReviewRepository : Repository, IReviewRepository
     {
-        public ReviewRepository(StudentsQuestionsContext context) : base(context)
+        public ReviewRepository(GamesContext context) : base(context)
         {
+        }
+        public Review GetReviewById(int reviewid)
+        {
+            return _context.Reviews.SingleOrDefault(u => u.Id == reviewid);
+        }
+        public IEnumerable<Review> GetReviewsByGameId(int gameId)
+        {
+            return _context.Reviews.Where(r => r.GameId == gameId).ToList();
         }
 
-        public void AddQuestion(Question newQuestion)
+        public void CreateReview(Review newReview)
         {
-            _context.Questions.Add(newQuestion);
+            _context.Reviews.Add(newReview);
         }
 
-        public Question? GetQuestion(int questionId)
+        public void UpdateReview(Review newReview)
         {
-            return _context.Questions
-                .Include(q => q.AssignedProfessor)
-                .Include(q => q.Student)
-                .FirstOrDefault(c => c.Id == questionId);
+            _context.Update(newReview);
+            _context.SaveChanges();
+        }
+        public void DeleteReview(int reviewId)
+        {
+            _context.Reviews.Remove(GetReviewById(reviewId));
         }
 
-        public bool IsQuestionIdValid(int questionId)
+        public List<Review> GetAllReviews()
         {
-            return _context.Questions.Any(q => q.Id == questionId);
+           return  _context.Reviews.ToList();
         }
 
-        public IOrderedQueryable<Question> GetPendingQuestions(int userId, bool withResponses)
-        {
-            if (withResponses)
-                return _context.Questions
-                    .Include(q => q.Responses).ThenInclude(r => r.Creator)
-                    .Where(q => q.ProfessorId == userId && q.QuestionState == QuestionState.WaitingProfessorAnwser)
-                    .OrderBy(q => q.LastModificationDate);
-            return _context.Questions
-                .Where(q => q.ProfessorId == userId && q.QuestionState == QuestionState.WaitingProfessorAnwser)
-                .OrderBy(q => q.LastModificationDate);
-        }
+      
     }
-
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TPI_Integrador_Prog3.Models.Reviews
+namespace TPI_Integrador_Prog3.Models.Review
 {
-    public class ReviewCreate
+    public class ReviewCreateDto
     {
         [Required]
         public string UsernameInReview { get; set; }

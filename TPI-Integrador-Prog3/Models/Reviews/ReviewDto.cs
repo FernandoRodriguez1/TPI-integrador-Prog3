@@ -1,4 +1,4 @@
-﻿namespace TPI_Integrador_Prog3.Models.Reviews
+﻿namespace TPI_Integrador_Prog3.Models.Review
 {
     public class ReviewDto
     {
@@ -7,7 +7,5 @@
         public int UserRatingInReview { get; set; }
         public string UserCommentInReview { get; set; }
         public DateTime CreationDate { get; set; }
-        //opcional
-        public DateTime? LastModificationDate { get; set; }
     }
 }

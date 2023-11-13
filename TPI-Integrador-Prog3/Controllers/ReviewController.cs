@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using TPI_Integrador_Prog3.Entities;
+using TPI_Integrador_Prog3.Services.Interfaces;
 
 namespace TPI_Integrador_Prog3.Controllers
 {
@@ -8,32 +10,41 @@ namespace TPI_Integrador_Prog3.Controllers
     [ApiController]
     public class ReviewController : ControllerBase
     {
-        //obtendra todas las reseñas hechas hasta el momento
-        [HttpGet("{responseId}", Name = "GetResponse")]
-        public ActionResult<ResponseDto> GetQuestion(int responseId)
+        private readonly IReviewService _reviewService;
+        public ReviewController(IReviewService reviewService)
         {
-            var response = _responseService.GetResponse(responseId);
-
-            if (response is null)
-                return NotFound();
-
-            return Ok(response);
+            _reviewService = reviewService;
+        }
+        [HttpGet("GetAllReviews")]
+        public IActionResult GetReviews()
+        {
+            return Ok(_reviewService.GetReviews());
+        }
+        [HttpGet("ReviewsByGameId/{gameId}")]
+        public IActionResult GetReviewsByGameId([FromRoute] int gameId)
+        {
+            return Ok(_reviewService.GetReviewsByGameId(gameId));
+        }
+        [HttpPost("CreateReview/{gameId}")]
+        public IActionResult CreateReview(int gameId, [FromBody] Review review)
+        {
+            review.GameId = gameId;
+            _reviewService.CreateReview(review);
+            return Ok();
+        }
+        [HttpPut("UpdateReview/{gameId}")]
+        public IActionResult UpdateReview(int gameId, [FromBody] Review review)
+        {
+            review.GameId = gameId;
+            _reviewService.UpdateReview(review);
+            return Ok();
         }
 
-        [HttpPost]
-        public IActionResult CreateReview(int JuegoId, ResponseForCreationDto newReviewForCreation)
+        [HttpDelete("DeleteReview/{gameId}")]
+        public IActionResult DeleteReview(int review)
         {
-            if (!_questionService.IsQuestionIdValid(questionId))
-                return NotFound($"Question Id not found: {questionId.ToString()}");
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            var userId = int.Parse(userIdClaim);
-
-            var newResponse = _responseService.CreateResponse(newResponseForCreation, questionId, userId);
-
-            return CreatedAtRoute(
-                "GetResponse",
-                new { questionId = questionId, responseId = newResponse.Id },
-                newResponse);
+            _reviewService.DeleteReview(review);
+            return Ok();
         }
     }
 }

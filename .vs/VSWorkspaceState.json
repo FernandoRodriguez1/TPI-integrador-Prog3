@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\TPI-Integrador-Prog3",
+    "\\TPI-Integrador-Prog3\\Controllers",
+    "\\TPI-Integrador-Prog3\\DBContext"
   ],
-  "SelectedNode": "\\TPI-Integrador-Prog3.sln",
+  "SelectedNode": "\\TPI-Integrador-Prog3\\Controllers\\ReviewController.cs",
   "PreviewInSolutionExplorer": false
 }

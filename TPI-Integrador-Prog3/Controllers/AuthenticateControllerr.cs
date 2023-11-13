@@ -9,7 +9,7 @@ namespace TPI_Integrador_Prog3.Controllers
     public class AuthenticateControllerr : ControllerBase
     {
         [HttpPost]
-        public IActionResult Authenticate(Credentials credentials )
+        public IActionResult Authenticate(CredentialsDto credentials )
         {
 
             string token = "";

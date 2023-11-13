@@ -18,16 +18,6 @@ namespace TPI_Integrador_Prog3.Controllers
         {
             _adminService = adminService;
         }
-        [HttpDelete("{idReview}")]
-        public IActionResult DeleteReview(int reviewId)
-        {
-            return Ok(_adminService.DeleteReview(reviewId));
-        }
-        [HttpDelete("{idGame}")]
-        public IActionResult DeleteGame(int idGame)
-        {
-            return Ok(_adminService.DeleteGame(idGame));
-        }
-
+       
     }
 }
