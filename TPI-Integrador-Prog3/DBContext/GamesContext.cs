@@ -18,7 +18,6 @@ namespace TPI_Integrador_Prog3.DBContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasDiscriminator(u => u.UserType);
-
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Client)
                 .WithMany(c => c.Reviews)
@@ -30,32 +29,26 @@ namespace TPI_Integrador_Prog3.DBContexts
                 .HasForeignKey(r => r.GameId);
 
             modelBuilder.Entity<Game>()
-                .HasOne(g => g.Client)
-                .WithMany(c => c.Games)
-                .HasForeignKey(g => g.ClientId);
-
-            modelBuilder.Entity<Game>()
-                .HasOne(g => g.Review)
-                .WithMany(r => r.Games)
-                .HasForeignKey(g => g.ReviewId);
+                .HasMany(g => g.Reviews)
+                .WithOne(r => r.Game)
+                .HasForeignKey(g => g.GameId);
 
             modelBuilder.Entity<Client>()
                 .HasMany(c => c.Games)
-                .WithOne(g => g.Client)
-                .HasForeignKey(g => g.ClientId);
+                .WithMany(g => g.Clients)
+                .UsingEntity(j => j.ToTable("ClientGames"));
 
             modelBuilder.Entity<Client>()
                 .HasMany(c => c.Reviews)
                 .WithOne(r => r.Client)
                 .HasForeignKey(r => r.ClientId);
 
-
-            //EntityFrameworkCore\Add-Migration InitialCreate
-            //EntityFrameworkCore\Update-Database
-
             base.OnModelCreating(modelBuilder);
-
         }
+                
 
+                
     }
+    
+
 }

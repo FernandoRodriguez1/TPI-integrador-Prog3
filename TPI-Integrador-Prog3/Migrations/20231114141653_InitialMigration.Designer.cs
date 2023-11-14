@@ -11,8 +11,8 @@ using TPI_Integrador_Prog3.DBContexts;
 namespace TPI_Integrador_Prog3.Migrations
 {
     [DbContext(typeof(GamesContext))]
-    [Migration("20231113224232_NewClient")]
-    partial class NewClient
+    [Migration("20231114141653_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,16 +20,25 @@ namespace TPI_Integrador_Prog3.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.12");
 
+            modelBuilder.Entity("ClientGame", b =>
+                {
+                    b.Property<int>("ClientsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GamesId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ClientsId", "GamesId");
+
+                    b.HasIndex("GamesId");
+
+                    b.ToTable("ClientGames", (string)null);
+                });
+
             modelBuilder.Entity("TPI_Integrador_Prog3.Entities.Game", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("AdminId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ClientId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("DepartureDate")
@@ -50,7 +59,7 @@ namespace TPI_Integrador_Prog3.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ReviewId")
+                    b.Property<int?>("ReviewId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Synopsis")
@@ -58,10 +67,6 @@ namespace TPI_Integrador_Prog3.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdminId");
-
-                    b.HasIndex("ClientId");
 
                     b.HasIndex("ReviewId");
 
@@ -114,6 +119,9 @@ namespace TPI_Integrador_Prog3.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("State")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -142,35 +150,29 @@ namespace TPI_Integrador_Prog3.Migrations
                 {
                     b.HasBaseType("TPI_Integrador_Prog3.Entities.User");
 
-                    b.Property<int?>("ReviewId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasIndex("ReviewId");
-
                     b.HasDiscriminator().HasValue("Client");
+                });
+
+            modelBuilder.Entity("ClientGame", b =>
+                {
+                    b.HasOne("TPI_Integrador_Prog3.Entities.Client", null)
+                        .WithMany()
+                        .HasForeignKey("ClientsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TPI_Integrador_Prog3.Entities.Game", null)
+                        .WithMany()
+                        .HasForeignKey("GamesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TPI_Integrador_Prog3.Entities.Game", b =>
                 {
-                    b.HasOne("TPI_Integrador_Prog3.Entities.Admin", null)
+                    b.HasOne("TPI_Integrador_Prog3.Entities.Review", null)
                         .WithMany("Games")
-                        .HasForeignKey("AdminId");
-
-                    b.HasOne("TPI_Integrador_Prog3.Entities.Client", "Client")
-                        .WithMany("Games")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TPI_Integrador_Prog3.Entities.Review", "Review")
-                        .WithMany("Games")
-                        .HasForeignKey("ReviewId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Review");
+                        .HasForeignKey("ReviewId");
                 });
 
             modelBuilder.Entity("TPI_Integrador_Prog3.Entities.Review", b =>
@@ -192,13 +194,6 @@ namespace TPI_Integrador_Prog3.Migrations
                     b.Navigation("Game");
                 });
 
-            modelBuilder.Entity("TPI_Integrador_Prog3.Entities.Client", b =>
-                {
-                    b.HasOne("TPI_Integrador_Prog3.Entities.Review", null)
-                        .WithMany("Clients")
-                        .HasForeignKey("ReviewId");
-                });
-
             modelBuilder.Entity("TPI_Integrador_Prog3.Entities.Game", b =>
                 {
                     b.Navigation("Reviews");
@@ -206,20 +201,11 @@ namespace TPI_Integrador_Prog3.Migrations
 
             modelBuilder.Entity("TPI_Integrador_Prog3.Entities.Review", b =>
                 {
-                    b.Navigation("Clients");
-
-                    b.Navigation("Games");
-                });
-
-            modelBuilder.Entity("TPI_Integrador_Prog3.Entities.Admin", b =>
-                {
                     b.Navigation("Games");
                 });
 
             modelBuilder.Entity("TPI_Integrador_Prog3.Entities.Client", b =>
                 {
-                    b.Navigation("Games");
-
                     b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618

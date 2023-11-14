@@ -9,8 +9,8 @@ namespace TPI_Integrador_Prog3.Models
         public string Synopsis { get; set; }
         public string Developer { get; set; }
 
-        public int? ClientId { get; set; }
-        
-      
+        public DateTime? DepartureDate { get; set; } = DateTime.Now;
+
+
     }
 }

@@ -14,15 +14,8 @@ namespace TPI_Integrador_Prog3.Entities
         public int GameRating { get; set; }
         public DateTime? DepartureDate { get; set; }
         public string Developer { get; set; }
-        [ForeignKey("ClientId")]
-        public Client Client { get; set; }
-        public int ClientId { get; set; }
-        [ForeignKey("ReviewId")]
-        public Review Review { get; set; }
-        public int ReviewId { get; set; }
-
         public ICollection<Review> Reviews { get; set; }
-       
+        public ICollection<Client> Clients { get; set; }
 
     }
 }

@@ -12,8 +12,6 @@ namespace TPI_Integrador_Prog3.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-
-
         private readonly IUserService _userService;
         public UserController(IUserService userService)
         {
@@ -26,7 +24,7 @@ namespace TPI_Integrador_Prog3.Controllers
             var result = _userService.CreateUser(user);
             if (result == null)
             {
-                return BadRequest();
+                return BadRequest("usuario no encontrado");
             }
             return Ok(result);
         }
@@ -62,7 +60,7 @@ namespace TPI_Integrador_Prog3.Controllers
             var result = _userService.GetUserByUserName(username);
             if (result == null)
             {
-                return BadRequest();
+                return BadRequest("usuario no encontrado");
             }
             return Ok(result);
         }
@@ -73,7 +71,7 @@ namespace TPI_Integrador_Prog3.Controllers
             var result = _userService.GetUserByEmail(email);
             if (result == null)
             {
-                return BadRequest();
+                return BadRequest("usuario no encontrado");
             }
             return Ok(result);
         }

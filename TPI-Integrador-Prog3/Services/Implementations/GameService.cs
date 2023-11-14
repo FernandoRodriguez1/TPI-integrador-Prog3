@@ -26,12 +26,8 @@ namespace TPI_Integrador_Prog3.Services.Implementations
         {
             var GameNew = _mapper.Map<Game>(gamesdto);
 
-            
-            
                 _gameRepository.CreateGame(GameNew);
-                
-            
-            
+               
         }
 
         public void UpdateGame(int id, GamesDto gamedto)
