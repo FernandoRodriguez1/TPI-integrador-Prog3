@@ -11,19 +11,14 @@ namespace TPI_Integrador_Prog3.Entities
             public int Id { get; set; }
             public string Title { get; set; }
             public string? Description { get; set; }
-            [ForeignKey("AdminId")]
-            public Admin? Admin { get; set; }
-            public int AdminId { get; set; }
-            [ForeignKey("CreatorClientId")]
-            [Required]
+            [ForeignKey("ClientId")]
             public Client Client { get; set; }
             public int ClientId { get; set; }
             [ForeignKey("GameId")]
-            [Required]
-            public Games NameGame { get; set; }
+            public Game Game { get; set; }
             public int GameId { get; set; }
             public DateTime CreationDate { get; set; }
-            public ICollection<Games> Games { get; set; } = new List<Games>();
+            public ICollection<Game> Games { get; set; }
 
     }
 }

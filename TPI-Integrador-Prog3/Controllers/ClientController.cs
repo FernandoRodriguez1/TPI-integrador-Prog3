@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TPI_Integrador_Prog3.Entities;
 using TPI_Integrador_Prog3.Services.Interfaces;
@@ -6,36 +7,51 @@ using TPI_Integrador_Prog3.Services.Interfaces;
 namespace TPI_Integrador_Prog3.Controllers
 {
     [Route("api/[controller]")]
+    //[Authorize]
     [ApiController]
     public class ClientController : ControllerBase
     {
-        // podra eliminar reseña¿?
 
         private readonly IClientService _clientService;
-
-        ClientController(IClientService clientService)
+        public ClientController(IClientService clientService)
         {
             _clientService = clientService;
         }
+
         [HttpGet]
-        public IActionResult GetGames()
+        public IActionResult GetAllGames()
         {
-            return Ok(_clientService.GetGames());
+            return Ok(_clientService.GetAllGames());
         }
-        [HttpGet("{idGame}")]
-        public async Task<ActionResult> GetReviews([FromQuery]int idGame)
+
+        [HttpGet("{gameId}/reviews")]
+        public IActionResult GetReviewsByGameId([FromRoute]int gameId)
         {
-            return Ok( await _clientService.GetReviewxGameAsync(idGame));
+            return Ok(_clientService.GetReviewsByGameId(gameId));
         }
-        [HttpPost]
-        public IActionResult AddReviewxGame([FromBody] Review review)
+
+        [HttpPost("/{gameId}/reviews")]
+        public IActionResult CreateReview(int gameId, [FromBody] Review review)
         {
-            return Ok(_clientService.AddReviewxGame(review));
+            review.GameId = gameId;
+            _clientService.CreateReview(review);
+            return Ok();
         }
-        [HttpDelete]
-        public Task<ActionResult> DeleteReview(Review review)
+
+        [HttpPut("{gameId}/reviews")]
+        public IActionResult UpdateReview(int gameId, [FromBody] Review review)
         {
-            return Ok( _clientService.DeleteReview(review));
+            review.GameId = gameId;
+            _clientService.UpdateReview(review);
+            return Ok();
+        }
+
+        [HttpDelete("{gameId}/reviews")]
+        public IActionResult DeleteReview(int gameId, [FromBody] Review review)
+        {
+            review.GameId = gameId;
+            _clientService.DeleteReview(review);
+            return Ok();
         }
 
     }

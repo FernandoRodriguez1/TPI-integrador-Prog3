@@ -11,11 +11,25 @@ namespace TPI_Integrador_Prog3.Data.Implemetation
         {
         }
 
+        public IEnumerable<Review> GetReviewsByGameId(int gameId)
+        {
+            return _context.Reviews.Where(r => r.GameId == gameId).ToList();
+        }
+
         public void CreateReview(Review newReview)
         {
             _context.Reviews.Add(newReview);
         }
 
-        public IEnumerable<Review> GetReview(int gameid) => _context.Reviews.Where(g => g.GameId == gameid);
+        public void UpdateReview(Review newReview)
+        {
+            _context.Update(newReview);
+            _context.SaveChanges();
+        }
+        public void DeleteReview(Review newReview)
+        {
+            _context.Reviews.Remove(newReview);
+        }
+        
     }
 }

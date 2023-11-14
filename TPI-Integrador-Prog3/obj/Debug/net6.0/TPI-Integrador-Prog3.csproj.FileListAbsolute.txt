@@ -149,3 +149,11 @@ C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\obj\Deb
 C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\obj\Debug\net6.0\TPI-Integrador-Prog3.pdb
 C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\obj\Debug\net6.0\TPI-Integrador-Prog3.genruntimeconfig.cache
 C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\obj\Debug\net6.0\ref\TPI-Integrador-Prog3.dll
+C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\nicom\Desktop\TPI API\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

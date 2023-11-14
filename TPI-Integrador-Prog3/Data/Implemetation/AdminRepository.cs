@@ -23,13 +23,13 @@ namespace TPI_Integrador_Prog3.Data.Implemetation
 
             return new List<Review>(); // Retorna una lista vacía si el juego no se encontró
         }
-        public Games? RemoveGameById(int gameId)
+        public Game? RemoveGameById(int gameId)
         {
             var game = _context.Games.Find(gameId); // Busca el juego por su ID
             if (game != null)
             {
                 _context.Games.Remove(game); // Elimina el juego de la base de datos
-            }
+            }   
             return game; // Retorna el juego eliminado (o null si no se encontró)
         }
         public Review? RemoveReviewById(int reviewId)

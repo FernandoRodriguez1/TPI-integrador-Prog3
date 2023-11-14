@@ -5,10 +5,13 @@ namespace TPI_Integrador_Prog3.Services.Interfaces
 {
     public interface IClientService
     {
-        Task AddReviewxGame(Review review);
-        Task<IEnumerable<Review>> GetReviewxGameAsync(int idGame);
-        Task<IEnumerable<Games>> GetGames();
-        void DeleteReview(Review review);
-        Task<bool> GameExistsAsync(int idGame);
+        public Client GetClientById(int userId);
+        public IEnumerable<Game> GetAllGames();
+        public IEnumerable<Review> GetReviewsByGameId(int gameId);
+        public void CreateReview(Review review);
+        public void UpdateReview(Review review);
+        public void DeleteReview(Review review);
+
+
     }
 }

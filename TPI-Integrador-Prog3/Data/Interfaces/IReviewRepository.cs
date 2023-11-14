@@ -4,8 +4,10 @@ namespace TPI_Integrador_Prog3.Data.Interfaces
 {
     public interface IReviewRepository
     {
+        public IEnumerable<Review> GetReviewsByGameId(int gameId);
         void CreateReview(Review newReview);
+        void UpdateReview(Review newReview);
+        void DeleteReview(Review newReview);
 
-        IEnumerable<Review> GetReview(int gameid);
     }
 }

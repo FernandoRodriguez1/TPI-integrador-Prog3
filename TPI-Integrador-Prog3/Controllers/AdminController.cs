@@ -8,7 +8,7 @@ namespace TPI_Integrador_Prog3.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class AdminController : ControllerBase
     {
         // ver si debe tener un get y un delete u otro metodo a implementar.
@@ -19,13 +19,16 @@ namespace TPI_Integrador_Prog3.Controllers
             _adminService = adminService;
         }
 
+        //Admin borre usuario por mail o UserName
+
         [HttpGet("{idGame}")]
         public IActionResult GetReviewxGame([FromQuery] int idGame)
         {
             return Ok();
         }
+
         [HttpDelete("{idReview}")]
-        public IActionResult DeleteReview(Games games)
+        public IActionResult DeleteReview(Game games)
         {
             return Ok();
         }

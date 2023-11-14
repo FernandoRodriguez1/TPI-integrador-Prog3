@@ -11,8 +11,5 @@ namespace TPI_Integrador_Prog3.Models
         public int GameRating { get; set; }
         public DateTime DepartureDate { get; set; }
         public string Developer { get; set; }
-        public string Comments { get; set; }
-        public DateTime LastUpdate { get; set; }
-        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }

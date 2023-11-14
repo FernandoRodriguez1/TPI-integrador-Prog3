@@ -1,43 +1,47 @@
 ﻿using System.Data.Entity;
+using TPI_Integrador_Prog3.Data.Interfaces;
 using TPI_Integrador_Prog3.DBContexts;
 using TPI_Integrador_Prog3.Entities;
-using TPI_Integrador_Prog3.Models;
 using TPI_Integrador_Prog3.Services.Interfaces;
 
 namespace TPI_Integrador_Prog3.Services.Implementacion
 {
     public class ClientService : IClientService
     {
-        private readonly GamesContext _context;
-        public ClientService(GamesContext context)
+        
+        private readonly IClientRepository _clientRepository;
+        public ClientService(IClientRepository clientRepository)
         {
-            _context = context;
+            _clientRepository = clientRepository;
         }
 
-        public async Task AddReviewxGame(Review review)
+        public IEnumerable<Game> GetAllGames()
         {
-            _context.Reviews.Add(review);
-            await _context.SaveChangesAsync(); 
+            return _clientRepository.GetAllGames();
         }
 
-
-        public async Task<IEnumerable<Review>> GetReviewxGameAsync(int idGame)
+        public Client GetClientById(int userId)
         {
-            return await _context.Reviews.Where(g => g.GameId == idGame).ToListAsync();
+            return _clientRepository.GetClientById(userId);
         }
 
-        public async Task<IEnumerable<Games>> GetGames()
+        public IEnumerable<Review> GetReviewsByGameId(int gameId)
         {
-            return await _context.Games.ToListAsync();
-        }
-        public async Task<bool> GameExistsAsync(int idGame)
-        {
-            return await _context.Games.AnyAsync(c => c.Id == idGame);
+            return _clientRepository.GetReviewsByGameId(gameId);
         }
 
+        public void CreateReview(Review review)
+        {
+            _clientRepository.CreateReview(review);
+        }
+        public void UpdateReview(Review review)
+        {
+            _clientRepository.UpdateReview(review);
+        }
         public void DeleteReview(Review review)
         {
-            _context.Reviews.Remove(review);
+            _clientRepository.DeleteReview(review);
         }
+
     }
 }

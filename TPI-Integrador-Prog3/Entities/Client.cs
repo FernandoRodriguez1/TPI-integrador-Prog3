@@ -2,10 +2,8 @@
 {
     public class Client : User
     {
-       //Tendra que valorar juegos
-
-       public ICollection<Games> Games { get; set; } = new List<Games>();
-       public ICollection<Review> Reviews { get; set; } = new List<Review>();
+       public ICollection<Game> Games { get; set; }
+       public ICollection<Review> Reviews { get; set; }
 
     }
 }

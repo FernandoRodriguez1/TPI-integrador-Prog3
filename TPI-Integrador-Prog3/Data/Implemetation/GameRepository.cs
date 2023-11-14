@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using TPI_Integrador_Prog3.Data.Interfaces;
+﻿using TPI_Integrador_Prog3.Data.Interfaces;
 using TPI_Integrador_Prog3.DBContexts;
 using TPI_Integrador_Prog3.Entities;
 
@@ -11,16 +10,28 @@ namespace TPI_Integrador_Prog3.Data.Implemetation
         { 
         }
 
-        public void AddGame(Games game)
+        public void CreateGame(Game game)
         {
             _context.Games.Add(game);
             _context.SaveChanges();
         }
+        public void UpdateGame(Game game)
+        {
+            _context.Update(game);
+            _context.SaveChanges();
+        }
 
-        public void RemoveGame(Games game)
+        public void DeleteGame(Game game)
         {
             _context.Games.Remove(game);
             _context.SaveChanges();
         }
+
+        public Game GetGameById(int gameId)
+        {
+            return _context.Games.Find(gameId);
+        }
+
+
     }
 }
