@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TPI_Integrador_Prog3.Entities;
+using TPI_Integrador_Prog3.Models;
 using TPI_Integrador_Prog3.Services.Implementations;
 using TPI_Integrador_Prog3.Services.Interfaces;
 
@@ -17,42 +18,60 @@ namespace TPI_Integrador_Prog3.Controllers
         {
             _userService = userService;
         }
-
-        [HttpPost]
-        public IActionResult CreateUser([FromBody] User user)
+        [HttpGet]
+        public IActionResult GetAllUsers()
         {
-            var result = _userService.CreateUser(user);
-            if (result == null)
-            {
-                return BadRequest("usuario no encontrado");
-            }
-            return Ok(result);
+            return Ok(_userService.GetAllUsers());
         }
 
-        [HttpPut]
-        public IActionResult UpdateUser([FromBody] User user)
+        [HttpPost("CreateClient")]
+        public IActionResult CreateClient([FromBody] UserDto clientDto)
         {
-            _userService.UpdateUser(user);
+
+            _userService.CreateClient(clientDto);
+            return StatusCode(201);
+        }
+
+        [HttpPost("CreateAdmin")]
+        public IActionResult CreateAdmin([FromBody] UserDto adminDto)
+        {
+
+            _userService.CreateAdmin(adminDto);
+            return StatusCode(201);
+        }
+
+
+        [HttpPut("{idUser}")]
+        public IActionResult UpdateUser(int id,UserDto user)
+        {
+            _userService.UpdateUser(id,user);
             return Ok();
         }
 
-        [HttpDelete]
-        public IActionResult DeleteUser(string email)
+        [HttpDelete("DeleteUserById/{id}")]
+        public IActionResult DeleteUserById(int id)
+        {
+            _userService.DeleteUserById(id);
+            return Ok("User Delete");
+        }
+
+        [HttpDelete("DeleteUserByEmail/{email}")]
+        public IActionResult DeleteUserByEmail(string email)
         {
             _userService.DeleteUserByEmail(email);
-            return Ok();
+            return Ok("User Delete");
         }
  
-        [HttpPost("validate")]
-        public IActionResult ValidateUser([FromBody] User user)
-        {
-            var result = _userService.ValidateUser(user.UserName, user.Password);
-            if (result == null)
-            {
-                return BadRequest();
-            }
-            return Ok(result);
-        }
+        //[HttpPost("validate")]
+        //public IActionResult ValidateUser([FromBody] User user)
+        //{
+        //    var result = _userService.ValidateUser(user.UserName, user.Password);
+        //    if (result == null)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    return Ok(result);
+        //}
 
         [HttpGet("GetClientByUsername/{username}")]
         public IActionResult GetUserByUserName(string username)

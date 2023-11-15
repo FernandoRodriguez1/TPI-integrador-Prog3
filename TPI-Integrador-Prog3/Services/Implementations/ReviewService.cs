@@ -1,7 +1,6 @@
 ﻿using TPI_Integrador_Prog3.Data.Implementations;
 using TPI_Integrador_Prog3.Data.Interfaces;
 using TPI_Integrador_Prog3.Entities;
-using TPI_Integrador_Prog3.Models.Review;
 using TPI_Integrador_Prog3.Services.Interfaces;
 
 namespace TPI_Integrador_Prog3.Services.Implementations

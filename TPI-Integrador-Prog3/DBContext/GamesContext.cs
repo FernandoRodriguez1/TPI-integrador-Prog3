@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TPI_Integrador_Prog3.Entities;
+using TPI_Integrador_Prog3.Enum;
 
 namespace TPI_Integrador_Prog3.DBContexts
 {
@@ -17,7 +18,11 @@ namespace TPI_Integrador_Prog3.DBContexts
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasDiscriminator(u => u.UserType);
+            modelBuilder.Entity<User>()
+                .HasDiscriminator<UserType>("UserType")
+                .HasValue<Admin>(UserType.Admin)
+                .HasValue<Client>(UserType.Client);
+
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Client)
                 .WithMany(c => c.Reviews)

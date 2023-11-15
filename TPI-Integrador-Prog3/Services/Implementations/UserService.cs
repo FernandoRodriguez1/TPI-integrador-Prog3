@@ -1,5 +1,5 @@
-﻿using TPI_Integrador_Prog3.Data.Interfaces;
-using TPI_Integrador_Prog3.DBContexts;
+﻿using AutoMapper;
+using TPI_Integrador_Prog3.Data.Interfaces;
 using TPI_Integrador_Prog3.Entities;
 using TPI_Integrador_Prog3.Models;
 using TPI_Integrador_Prog3.Services.Interfaces;
@@ -8,58 +8,66 @@ namespace TPI_Integrador_Prog3.Services.Implementations
 {
     public class UserService : IUserService
     {
-        private readonly GamesContext _context;
+        private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
 
-        public UserService(GamesContext context, IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
-            _context = context;
+            _mapper = mapper;
             _userRepository = userRepository;
         }
-        public BaseResponse ValidateUser(string username, string password)
+
+
+        public IEnumerable<User> GetAllUsers()
         {
-            BaseResponse response = new BaseResponse();
-            User? userForLogin = _context.Users.SingleOrDefault(u => u.UserName == username);
-            if (userForLogin != null)
-            {
-                if (userForLogin.Password == password)
-                {
-                    response.Result = true;
-                    response.Message = "loging Succesfull";
-                }
-                else
-                {
-                    response.Result = false;
-                    response.Message = "wrong password";
-                }
-            }
-            else
-            {
-                response.Result = false;
-                response.Message = "wrong email";
-            }
-            return response;
-        }
-        public int CreateUser(User user)
-        {
-            _context.Users.Add(user);
-            _context.SaveChanges();
-            return user.Id;
+            return _userRepository.GetAllUsers();
         }
 
-        public void UpdateUser(User user)
+        public void CreateClient(UserDto userDto)
         {
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            var newUser = _mapper.Map<Client>(userDto);
+            _userRepository.CreateClient(newUser);
+        }
+
+        public void CreateAdmin(UserDto userDto)
+        {
+            var newUser = _mapper.Map<Admin>(userDto);
+            _userRepository.CreateAdmin(newUser);
+        }
+
+
+        public void UpdateUser(int id , UserDto user)
+        {
+            var existsUser = _userRepository.GetUserById(id);
+            if (existsUser == null)
+            {
+                throw new Exception("Usuario NO encontrado");
+            }
+            existsUser.UserName = user.UserName;
+            existsUser.Email = user.Email;
+
+            _userRepository.UpdateUser(existsUser);
+            _userRepository.SaveChanges();
+        }
+        public bool DeleteUserById(int id)
+        {
+            var user = _userRepository.GetUserById(id);
+            if (user != null)
+            {
+                _userRepository.DeleteUser(user);
+                _userRepository.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public bool DeleteUserByEmail(string email)
         {
-            var user = _context.Users.FirstOrDefault(g => g.Email == email);
+            var user = _userRepository.GetUserByEmail(email);
             if (user != null)
             {
-                _context.Users.Remove(user);
-                _context.SaveChanges();
+                _userRepository.DeleteUser(user);
+                _userRepository.SaveChanges();
                 return true;
             }
             return false;
@@ -67,13 +75,12 @@ namespace TPI_Integrador_Prog3.Services.Implementations
 
         public User? GetUserByUserName(string username)
         {
-            return _context.Users.SingleOrDefault(u => u.UserName == username);
+            return _userRepository.GetUserByUserName(username);
         }
         public User? GetUserByEmail(string email)
         {
-            return _context.Users.SingleOrDefault(u => u.Email == email);
+            return _userRepository.GetUserByEmail(email);
         }
-
     }
 }
 

@@ -11,7 +11,17 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         {
         }
 
-        public void CreateUser(User user)
+
+        public IEnumerable<User> GetAllUsers()
+        {
+            return _context.Users;
+        }
+        public void CreateClient(User user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+        }
+        public void CreateAdmin(User user)
         {
             _context.Users.Add(user);
             _context.SaveChanges();
@@ -39,12 +49,12 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         }
         public User? GetUserByEmail(string email)
         {
-            return _context.Users.Find(email);
+            return _context.Users.SingleOrDefault(e => e.Email == email);
         }
 
         public User? GetUserByUserName(string username)
         {
-            return _context.Users.Find(username);
+            return _context.Users.SingleOrDefault(u => u.UserName == username);
         }
     }
 }

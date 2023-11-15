@@ -8,13 +8,7 @@ namespace TPI_Integrador_Prog3.Controllers
     [ApiController]
     public class AuthenticateControllerr : ControllerBase
     {
-        [HttpPost]
-        public IActionResult Authenticate(CredentialsDto credentials )
-        {
 
-            string token = "";
 
-            return Ok(token);
-        }
     }
 }
