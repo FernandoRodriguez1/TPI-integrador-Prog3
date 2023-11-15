@@ -11,8 +11,8 @@ using TPI_Integrador_Prog3.DBContexts;
 namespace TPI_Integrador_Prog3.Migrations
 {
     [DbContext(typeof(GamesContext))]
-    [Migration("20231114141653_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20231115042828_initialmigration")]
+    partial class initialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,15 +86,18 @@ namespace TPI_Integrador_Prog3.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("GameId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("UserCommentInReview")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserNameInReview")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("UserRatingInReview")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -118,9 +121,6 @@ namespace TPI_Integrador_Prog3.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("State")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
                         .IsRequired()

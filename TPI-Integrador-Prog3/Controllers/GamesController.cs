@@ -26,6 +26,10 @@ namespace TPI_Integrador_Prog3.Controllers
         [HttpGet("GetGameById/{id}")]
         public IActionResult GetGameById(int id)
         {
+            if (_gameService.GetGameById(id) == null)
+            {
+                return BadRequest("El juego no existe");
+            }
             return Ok(_gameService.GetGameById(id));
         }
 
@@ -39,6 +43,10 @@ namespace TPI_Integrador_Prog3.Controllers
         [HttpPut]
         public IActionResult UpdateGame(int id, GamesDto game)
         {
+            if (_gameService.GetGameById(id) == null)
+            {
+                return BadRequest("El juego no existe");
+            }
             _gameService.UpdateGame(id,game);
             return Ok("Game Updated");
         }
@@ -46,6 +54,10 @@ namespace TPI_Integrador_Prog3.Controllers
         [HttpDelete]
         public IActionResult DeleteGame(int gameid)
         {
+            if (_gameService.GetGameById(gameid) == null)
+            {
+                return BadRequest("El juego no existe");
+            }
             _gameService.DeleteGame(gameid);
             return Ok("Game Deleted");
         }

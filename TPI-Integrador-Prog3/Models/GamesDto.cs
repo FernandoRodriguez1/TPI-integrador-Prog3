@@ -8,8 +8,9 @@ namespace TPI_Integrador_Prog3.Models
         public string Gender { get; set; }
         public string Synopsis { get; set; }
         public string Developer { get; set; }
+        public int GameRating { get; set; }
 
-        public DateTime? DepartureDate { get; set; } = DateTime.Now;
+        
 
 
     }

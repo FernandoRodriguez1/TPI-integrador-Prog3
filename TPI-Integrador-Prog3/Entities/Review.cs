@@ -8,8 +8,10 @@ namespace TPI_Integrador_Prog3.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string? Description { get; set; }
+        public string? UserCommentInReview { get; set; }
+        public string UserNameInReview { get; set; }
+        public int UserRatingInReview { get; set; }
+
         [ForeignKey("ClientId")]
         public Client Client { get; set; }
         public int? ClientId { get; set; }

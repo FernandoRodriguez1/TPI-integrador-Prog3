@@ -1,11 +1,12 @@
-﻿namespace TPI_Integrador_Prog3.Models.Review
+﻿namespace TPI_Integrador_Prog3.Models
 {
     public class ReviewDto
     {
-        public string GameName { get; set; }
+        public int ClientId { get; set; }
+        public int GameId { get; set; }
         public string UsernameInReview { get; set; }
         public int UserRatingInReview { get; set; }
         public string UserCommentInReview { get; set; }
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; } = DateTime.Now;
     }
 }

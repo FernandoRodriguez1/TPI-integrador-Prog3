@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TPI_Integrador_Prog3.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class initialmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,8 +20,7 @@ namespace TPI_Integrador_Prog3.Migrations
                     UserName = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Password = table.Column<string>(type: "TEXT", nullable: false),
-                    UserType = table.Column<string>(type: "TEXT", nullable: false),
-                    State = table.Column<bool>(type: "INTEGER", nullable: false)
+                    UserType = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,8 +70,9 @@ namespace TPI_Integrador_Prog3.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    UserCommentInReview = table.Column<string>(type: "TEXT", nullable: true),
+                    UserNameInReview = table.Column<string>(type: "TEXT", nullable: false),
+                    UserRatingInReview = table.Column<int>(type: "INTEGER", nullable: false),
                     ClientId = table.Column<int>(type: "INTEGER", nullable: false),
                     GameId = table.Column<int>(type: "INTEGER", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false)

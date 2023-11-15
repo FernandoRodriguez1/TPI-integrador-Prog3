@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TPI_Integrador_Prog3.Entities;
+using TPI_Integrador_Prog3.Models;
+using TPI_Integrador_Prog3.Services.Implementations;
 using TPI_Integrador_Prog3.Services.Interfaces;
 
 namespace TPI_Integrador_Prog3.Controllers
@@ -23,28 +25,36 @@ namespace TPI_Integrador_Prog3.Controllers
         [HttpGet("ReviewsByGameId/{gameId}")]
         public IActionResult GetReviewsByGameId([FromRoute] int gameId)
         {
+            var Listt = _reviewService.GetReviewsByGameId(gameId);
+            
+            if (Listt.Count() == 0)
+            {
+                return BadRequest("El juego no contiene Reviews");
+            }
             return Ok(_reviewService.GetReviewsByGameId(gameId));
         }
-        [HttpPost("CreateReview/{gameId}")]
-        public IActionResult CreateReview(int gameId, [FromBody] Review review)
+        [HttpPost("CreateReview")]
+        public IActionResult CreateReview([FromBody] ReviewDto reviewdto)
         {
-            review.GameId = gameId;
-            _reviewService.CreateReview(review);
-            return Ok();
+            _reviewService.CreateReview(reviewdto);
+            return Ok("Review Created");
         }
-        [HttpPut("UpdateReview/{gameId}")]
-        public IActionResult UpdateReview(int gameId, [FromBody] Review review)
+        [HttpPut("UpdateReview/{reviewid}")]
+        public IActionResult UpdateReview(int reviewid, ReviewDto reviewdto)
         {
-            review.GameId = gameId;
-            _reviewService.UpdateReview(review);
-            return Ok();
+            if (_reviewService.GetReviewById(reviewid) == null)
+            {
+                return BadRequest("La review no existe");
+            }
+            _reviewService.UpdateReview(reviewid, reviewdto);
+            return Ok("Review Updated");
         }
 
-        [HttpDelete("DeleteReview/{gameId}")]
-        public IActionResult DeleteReview(int review)
+        [HttpDelete("DeleteReview/{reviewid}")]
+        public IActionResult DeleteReview(int reviewid)
         {
-            _reviewService.DeleteReview(review);
-            return Ok();
+            _reviewService.DeleteReview(reviewid);
+            return Ok("Review Deleted");
         }
     }
 }

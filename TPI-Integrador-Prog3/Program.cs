@@ -18,7 +18,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //Cambiar a SQL Server - appsettings.json
 builder.Services.AddDbContext<GamesContext>(dbContextOptions => dbContextOptions.UseSqlite(
-    builder.Configuration["DB:ConnectionStrings"]));
+    builder.Configuration["DB:ConnectionStrings"]).EnableDetailedErrors());
 
 #region Injections
 builder.Services.AddScoped<IClientService, ClientService>();

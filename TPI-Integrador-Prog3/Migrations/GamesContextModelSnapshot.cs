@@ -83,15 +83,18 @@ namespace TPI_Integrador_Prog3.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("GameId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("UserCommentInReview")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserNameInReview")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("UserRatingInReview")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -115,9 +118,6 @@ namespace TPI_Integrador_Prog3.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("State")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
                         .IsRequired()

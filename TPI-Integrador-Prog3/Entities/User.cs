@@ -13,7 +13,7 @@ namespace TPI_Integrador_Prog3.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public string UserType { get; set; }
-        public bool State { get; set; } = true;
+        
     }
 }
         

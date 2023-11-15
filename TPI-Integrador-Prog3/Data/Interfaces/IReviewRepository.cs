@@ -9,7 +9,7 @@ namespace TPI_Integrador_Prog3.Data.Interfaces
         void UpdateReview(Review newReview);
         void DeleteReview(int reviewId);
         Review GetReviewById(int reviewId);
-        public List<Review> GetAllReviews();
+        public IEnumerable<Review> GetAllReviews();
 
        
     }

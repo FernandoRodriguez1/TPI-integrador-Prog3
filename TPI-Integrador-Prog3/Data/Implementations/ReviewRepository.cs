@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using TPI_Integrador_Prog3.Data.Interfaces;
+﻿using TPI_Integrador_Prog3.Data.Interfaces;
 using TPI_Integrador_Prog3.DBContexts;
 using TPI_Integrador_Prog3.Entities;
 
@@ -12,7 +11,7 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         }
         public Review GetReviewById(int reviewid)
         {
-            return _context.Reviews.SingleOrDefault(u => u.Id == reviewid);
+            return _context.Reviews.Find(reviewid);
         }
         public IEnumerable<Review> GetReviewsByGameId(int gameId)
         {
@@ -22,6 +21,7 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         public void CreateReview(Review newReview)
         {
             _context.Reviews.Add(newReview);
+            _context.SaveChanges();
         }
 
         public void UpdateReview(Review newReview)
@@ -31,10 +31,15 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         }
         public void DeleteReview(int reviewId)
         {
-            _context.Reviews.Remove(GetReviewById(reviewId));
+            var reviewToDelete = _context.Reviews.Find(reviewId);
+            if (reviewToDelete != null)
+            {
+                _context.Reviews.Remove(reviewToDelete);
+                _context.SaveChanges();
+            }
         }
 
-        public List<Review> GetAllReviews()
+        public IEnumerable<Review> GetAllReviews()
         {
            return  _context.Reviews.ToList();
         }

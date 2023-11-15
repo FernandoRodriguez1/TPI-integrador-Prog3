@@ -37,6 +37,7 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             {
                 throw new Exception("Juego NO encontrado");
             }
+            existsGame.GameRating = gamedto.GameRating;
             existsGame.GameName = gamedto.GameName;
             existsGame.Synopsis = gamedto.Synopsis;
             existsGame.Developer = gamedto.Developer;
