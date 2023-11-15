@@ -20,7 +20,7 @@ namespace TPI_Integrador_Prog3.Migrations
                     UserName = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Password = table.Column<string>(type: "TEXT", nullable: false),
-                    UserType = table.Column<string>(type: "TEXT", nullable: false)
+                    UserType = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -250,3 +250,11 @@ C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3
 C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\obj\Debug\net6.0\TPI-Integrador-Prog3.genruntimeconfig.cache
 C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\obj\Debug\net6.0\ref\TPI-Integrador-Prog3.dll
 C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\fr300\OneDrive\Escritorio\Tpi\TPI-integrador-Prog3\TPI-Integrador-Prog3\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

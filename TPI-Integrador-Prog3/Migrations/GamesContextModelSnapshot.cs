@@ -123,15 +123,14 @@ namespace TPI_Integrador_Prog3.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserType")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UserType")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
 
-                    b.HasDiscriminator<string>("UserType").HasValue("User");
+                    b.HasDiscriminator<int>("UserType");
 
                     b.UseTphMappingStrategy();
                 });
@@ -140,14 +139,14 @@ namespace TPI_Integrador_Prog3.Migrations
                 {
                     b.HasBaseType("TPI_Integrador_Prog3.Entities.User");
 
-                    b.HasDiscriminator().HasValue("Admin");
+                    b.HasDiscriminator().HasValue(0);
                 });
 
             modelBuilder.Entity("TPI_Integrador_Prog3.Entities.Client", b =>
                 {
                     b.HasBaseType("TPI_Integrador_Prog3.Entities.User");
 
-                    b.HasDiscriminator().HasValue("Client");
+                    b.HasDiscriminator().HasValue(1);
                 });
 
             modelBuilder.Entity("ClientGame", b =>
