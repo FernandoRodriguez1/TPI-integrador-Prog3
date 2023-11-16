@@ -9,7 +9,7 @@ using TPI_Integrador_Prog3.Services.Interfaces;
 
 namespace TPI_Integrador_Prog3.Services.Implementations
 {
-    public class GameService :  IGameService
+    public class GameService : IGameService
     {
         private readonly IGameRepository _gameRepository;
         private readonly IMapper _mapper;
@@ -26,8 +26,8 @@ namespace TPI_Integrador_Prog3.Services.Implementations
         {
             var GameNew = _mapper.Map<Game>(gamesdto);
 
-                _gameRepository.CreateGame(GameNew);
-               
+            _gameRepository.CreateGame(GameNew);
+
         }
 
         public void UpdateGame(int id, GamesDto gamedto)
@@ -42,7 +42,7 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             existsGame.Synopsis = gamedto.Synopsis;
             existsGame.Developer = gamedto.Developer;
             existsGame.Gender = gamedto.Gender;
-           
+
             _gameRepository.UpdateGame(existsGame);
         }
 

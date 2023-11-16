@@ -2,10 +2,9 @@
 {
     public class Admin : User
     {
-        public Admin() 
+        public Admin()
         {
             UserType = Enum.UserType.Admin;
         }
     }
 }
-

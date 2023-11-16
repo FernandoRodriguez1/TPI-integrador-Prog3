@@ -51,6 +51,6 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         {
             return _context.Games.SingleOrDefault(p => p.GameName == gamename);
         }
-   
+
     }
 }

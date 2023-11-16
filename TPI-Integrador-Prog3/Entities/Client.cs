@@ -9,7 +9,7 @@ namespace TPI_Integrador_Prog3.Entities
         {
             UserType = Enum.UserType.Client;
         }
-        public ICollection<Game> Games { get; set; } 
+        public ICollection<Game> Games { get; set; }
         public ICollection<Review> Reviews { get; set; }
     }
 

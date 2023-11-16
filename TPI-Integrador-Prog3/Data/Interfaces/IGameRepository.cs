@@ -10,6 +10,6 @@ namespace TPI_Integrador_Prog3.Data.Interfaces
         public void DeleteGame(int gameid);
         Game GetGameById(int gameId);
         Game GetGameByName(string gamename);
-        
+
     }
 }

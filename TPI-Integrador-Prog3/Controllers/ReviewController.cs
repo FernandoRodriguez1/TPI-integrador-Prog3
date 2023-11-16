@@ -26,7 +26,7 @@ namespace TPI_Integrador_Prog3.Controllers
         public IActionResult GetReviewsByGameId([FromRoute] int gameId)
         {
             var Listt = _reviewService.GetReviewsByGameId(gameId);
-            
+
             if (Listt.Count() == 0)
             {
                 return BadRequest("El juego no contiene Reviews");
@@ -58,5 +58,4 @@ namespace TPI_Integrador_Prog3.Controllers
         }
     }
 }
-    
 

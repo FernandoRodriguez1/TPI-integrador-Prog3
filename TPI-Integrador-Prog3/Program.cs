@@ -1,8 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+Ôªøusing Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-using System.Text.Json.Serialization;
 using TPI_Integrador_Prog3.Data.Implementations;
 using TPI_Integrador_Prog3.Data.Interfaces;
 using TPI_Integrador_Prog3.DBContexts;
@@ -14,8 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddJsonOptions(x =>
-                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -27,7 +25,7 @@ builder.Services.AddSwaggerGen(setupAction =>
     {
         Type = SecuritySchemeType.Http,
         Scheme = "Bearer",
-        Description = "Ac· pegar el token generado al loguearse."
+        Description = "Ac√° pegar el token generado al loguearse."
     });
 
     setupAction.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -38,7 +36,7 @@ builder.Services.AddSwaggerGen(setupAction =>
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "TPI-Integrador-Prog3BearerAuth" } //Tiene que coincidir con el id seteado arriba en la definiciÛn
+                    Id = "TPI-Integrador-Prog3BearerAuth" } //Tiene que coincidir con el id seteado arriba en la definici√≥n
                 }, new List<string>() }
     });
 }); ;
@@ -65,8 +63,8 @@ builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 #endregion
 
-builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntenticaciÛn que tenemos que elegir despuÈs en PostMan para pasarle el token
-    .AddJwtBearer(options => //Ac· definimos la configuraciÛn de la autenticaciÛn. le decimos quÈ cosas queremos comprobar. La fecha de expiraciÛn se valida por defecto.
+builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntenticaci√≥n que tenemos que elegir despu√©s en PostMan para pasarle el token
+    .AddJwtBearer(options => //Ac√° definimos la configuraci√≥n de la autenticaci√≥n. le decimos qu√© cosas queremos comprobar. La fecha de expiraci√≥n se valida por defecto.
     {
         options.TokenValidationParameters = new()
         {

@@ -39,40 +39,34 @@ namespace TPI_Integrador_Prog3.Controllers
             _userService.CreateAdmin(adminDto);
             return StatusCode(201);
         }
-
-
         [HttpPut("{idUser}")]
-        public IActionResult UpdateUser(int id,UserDto user)
+        public IActionResult UpdateUser(int id, UserDto user)
         {
-            _userService.UpdateUser(id,user);
+            _userService.UpdateUser(id, user);
             return Ok();
         }
-
         [HttpDelete("DeleteUserById/{id}")]
         public IActionResult DeleteUserById(int id)
         {
             _userService.DeleteUserById(id);
             return Ok("User Delete");
         }
-
         [HttpDelete("DeleteUserByEmail/{email}")]
         public IActionResult DeleteUserByEmail(string email)
         {
             _userService.DeleteUserByEmail(email);
             return Ok("User Delete");
         }
- 
-        //[HttpPost("validate")]
-        //public IActionResult ValidateUser([FromBody] User user)
-        //{
-        //    var result = _userService.ValidateUser(user.UserName, user.Password);
-        //    if (result == null)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    return Ok(result);
-        //}
-
+        [HttpPost("validate")]
+        public IActionResult ValidateUser([FromBody] User user)
+        {
+            var result = _userService.ValidateUser(user.UserName, user.Password);
+            if (result == null)
+            {
+                return BadRequest();
+            }
+            return Ok(result);
+        }
         [HttpGet("GetClientByUsername/{username}")]
         public IActionResult GetUserByUserName(string username)
         {

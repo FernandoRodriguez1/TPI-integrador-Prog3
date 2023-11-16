@@ -41,9 +41,9 @@ namespace TPI_Integrador_Prog3.Data.Implementations
 
         public IEnumerable<Review> GetAllReviews()
         {
-           return  _context.Reviews.ToList();
+            return _context.Reviews.ToList();
         }
 
-      
+
     }
 }

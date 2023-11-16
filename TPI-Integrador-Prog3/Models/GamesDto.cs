@@ -10,7 +10,7 @@ namespace TPI_Integrador_Prog3.Models
         public string Developer { get; set; }
         public int GameRating { get; set; }
 
-        
+
 
 
     }

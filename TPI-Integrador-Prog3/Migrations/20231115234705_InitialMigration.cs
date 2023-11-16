@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TPI_Integrador_Prog3.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,11 +18,8 @@ namespace TPI_Integrador_Prog3.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     UserName = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
-<<<<<<<< HEAD:TPI-Integrador-Prog3/Migrations/20231115183502_initialmigration.cs
-========
                     Email = table.Column<string>(type: "TEXT", nullable: false),
->>>>>>>> 8734cf62459e021d3d6017cca9ba69cce6aba8e5:TPI-Integrador-Prog3/Migrations/20231115134823_InitialMigration.cs
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
                     UserType = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

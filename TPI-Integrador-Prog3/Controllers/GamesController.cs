@@ -47,7 +47,7 @@ namespace TPI_Integrador_Prog3.Controllers
             {
                 return BadRequest("El juego no existe");
             }
-            _gameService.UpdateGame(id,game);
+            _gameService.UpdateGame(id, game);
             return Ok("Game Updated");
         }
 

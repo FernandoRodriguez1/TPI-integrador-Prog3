@@ -11,13 +11,13 @@ namespace TPI_Integrador_Prog3.Controllers
     [Authorize]
     public class AdminController : ControllerBase
     {
-       
+
         private readonly IAdminService _adminService;
 
         public AdminController(IAdminService adminService)
         {
             _adminService = adminService;
         }
-       
+
     }
 }

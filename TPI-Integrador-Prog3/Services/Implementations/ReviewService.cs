@@ -43,7 +43,7 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             }
             existsReview.GameId = reviewdto.GameId;
             existsReview.ClientId = existsReview.ClientId;
-            existsReview.UserNameInReview= reviewdto.UsernameInReview;
+            existsReview.UserNameInReview = reviewdto.UsernameInReview;
             existsReview.UserCommentInReview = reviewdto.UserCommentInReview;
             existsReview.UserRatingInReview = reviewdto.UserRatingInReview;
             existsReview.CreationDate = reviewdto.CreationDate;
@@ -60,8 +60,8 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             return _reviewRepository.GetReviewById(id);
         }
 
-       
-        
+
+
     }
 
 }

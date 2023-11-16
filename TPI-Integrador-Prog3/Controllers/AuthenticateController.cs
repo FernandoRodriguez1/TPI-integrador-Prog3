@@ -8,7 +8,7 @@ using TPI_Integrador_Prog3.Models;
 using TPI_Integrador_Prog3.Services.Interfaces;
 
 namespace TPI_Integrador_Prog3.Controllers
-{ 
+{
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticateController : ControllerBase
@@ -45,7 +45,7 @@ namespace TPI_Integrador_Prog3.Controllers
                 claimsForToken.Add(new Claim("sub", user.Id.ToString()));
                 claimsForToken.Add(new Claim("email", user.Email));
                 claimsForToken.Add(new Claim("username", user.UserName));
-                
+
 
                 var jwtSecurityToken = new JwtSecurityToken(
                     _config["Authentication:Issuer"],

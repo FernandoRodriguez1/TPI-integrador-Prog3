@@ -37,7 +37,7 @@ namespace TPI_Integrador_Prog3.Data.Implementations
             throw new NotImplementedException();
         }
 
-        
+
         public void UpdateUser(User user)
         {
             _context.Users.Update(user);

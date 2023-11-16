@@ -5,7 +5,7 @@ namespace TPI_Integrador_Prog3.Services.Interfaces
 {
     public interface IReviewService
     {
-        Review GetReviewById (int id);
+        Review GetReviewById(int id);
         IEnumerable<Review> GetReviews();
         public List<Review> GetReviewsByGameId(int gameId);
         void CreateReview(ReviewDto reviewdto);

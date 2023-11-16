@@ -11,13 +11,8 @@ using TPI_Integrador_Prog3.DBContexts;
 namespace TPI_Integrador_Prog3.Migrations
 {
     [DbContext(typeof(GamesContext))]
-<<<<<<<< HEAD:TPI-Integrador-Prog3/Migrations/20231115183502_initialmigration.Designer.cs
-    [Migration("20231115183502_initialmigration")]
-    partial class initialmigration
-========
-    [Migration("20231115134823_InitialMigration")]
+    [Migration("20231115234705_InitialMigration")]
     partial class InitialMigration
->>>>>>>> 8734cf62459e021d3d6017cca9ba69cce6aba8e5:TPI-Integrador-Prog3/Migrations/20231115134823_InitialMigration.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -11,6 +11,6 @@ namespace TPI_Integrador_Prog3.Profiles
             CreateMap<ReviewDto, Review>();
             CreateMap<Review, ReviewDto>();
         }
-         
+
     }
 }
