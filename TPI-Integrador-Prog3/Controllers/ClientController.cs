@@ -8,7 +8,7 @@ using TPI_Integrador_Prog3.Services.Interfaces;
 namespace TPI_Integrador_Prog3.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize]
+    
     [ApiController]
     public class ClientController : ControllerBase
     {

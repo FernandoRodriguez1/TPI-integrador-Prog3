@@ -17,7 +17,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-
+builder.Services.AddAuthorization(options => //Agregamos políticas para la autorización de los respectivos ENDPOINTS.
+{
+    options.AddPolicy("Admin", policy => policy.RequireClaim("usertype", "Admin"));
+    options.AddPolicy("Client", policy => policy.RequireClaim("usertype", "Client"));
+    options.AddPolicy("All", policy => policy.RequireClaim("usertype", "Admin", "Client"));
+});
 
 builder.Services.AddSwaggerGen(setupAction =>
 {
@@ -53,6 +58,8 @@ builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddScoped<IAuthenticateService, AuthenticateService>();
+
 #endregion
 
 #region Repositories

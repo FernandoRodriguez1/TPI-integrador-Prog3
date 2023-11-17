@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TPI_Integrador_Prog3.Entities;
@@ -18,11 +19,13 @@ namespace TPI_Integrador_Prog3.Controllers
             _reviewService = reviewService;
         }
         [HttpGet("GetAllReviews")]
+        [Authorize("All")]
         public IActionResult GetReviews()
         {
             return Ok(_reviewService.GetReviews());
         }
         [HttpGet("ReviewsByGameId/{gameId}")]
+        [Authorize("All")]
         public IActionResult GetReviewsByGameId([FromRoute] int gameId)
         {
             var Listt = _reviewService.GetReviewsByGameId(gameId);
@@ -34,12 +37,14 @@ namespace TPI_Integrador_Prog3.Controllers
             return Ok(_reviewService.GetReviewsByGameId(gameId));
         }
         [HttpPost("CreateReview")]
+        [Authorize("Client")]
         public IActionResult CreateReview([FromBody] ReviewDto reviewdto)
         {
             _reviewService.CreateReview(reviewdto);
             return Ok("Review Created");
         }
         [HttpPut("UpdateReview/{reviewid}")]
+        [Authorize("Client")]
         public IActionResult UpdateReview(int reviewid, ReviewDto reviewdto)
         {
             if (_reviewService.GetReviewById(reviewid) == null)
@@ -51,6 +56,7 @@ namespace TPI_Integrador_Prog3.Controllers
         }
 
         [HttpDelete("DeleteReview/{reviewid}")]
+        [Authorize("All")] 
         public IActionResult DeleteReview(int reviewid)
         {
             _reviewService.DeleteReview(reviewid);

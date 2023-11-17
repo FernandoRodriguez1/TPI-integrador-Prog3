@@ -78,29 +78,6 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             return _userRepository.GetUserByEmail(email);
         }
 
-        public BaseResponse ValidateUser(string email, string password)
-        {
-            BaseResponse response = new BaseResponse();
-            User? userForLogin = _context.Users.SingleOrDefault(u => u.Email == email);
-            if (userForLogin != null)
-            {
-                if (userForLogin.Password == password)
-                {
-                    response.Result = true;
-                    response.Message = "loging Succesfull";
-                }
-                else
-                {
-                    response.Result = false;
-                    response.Message = "wrong password";
-                }
-            }
-            else
-            {
-                response.Result = false;
-                response.Message = "wrong email";
-            }
-            return response;
-        }
+      
     }
 }

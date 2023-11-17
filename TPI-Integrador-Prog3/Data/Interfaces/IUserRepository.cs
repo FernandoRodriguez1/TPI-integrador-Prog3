@@ -8,7 +8,7 @@ namespace TPI_Integrador_Prog3.Data.Interfaces
         IEnumerable<User> GetAllUsers();
         User? GetUserById(int userId);
         User? GetUserByUserName(string username);
-        BaseResponse ValidateUser(string username, string password);
+        BaseResponse ValidateUser(AuthenticateDto authenticatedto);
         User? GetUserByEmail(string email);
         void CreateClient(User user);
         void CreateAdmin(User user);

@@ -32,11 +32,30 @@ namespace TPI_Integrador_Prog3.Data.Implementations
             return _context.Users.Find(userId);
         }
 
-        public BaseResponse ValidateUser(string username, string password)
+        public BaseResponse ValidateUser(AuthenticateDto authenticatedto)
         {
-            throw new NotImplementedException();
+            BaseResponse response = new BaseResponse();
+            User? user  = _context.Users.SingleOrDefault(u => u.UserName == authenticatedto.UserName);
+            if (user != null)
+            {
+                if (user.Password == authenticatedto.Password)
+                {
+                    response.Result = true;
+                    response.Message = "Logged In";
+                }
+                else
+                {
+                    response.Result = false;
+                    response.Message = "Incorrect Password";
+                }
+            }
+            else
+            {
+                response.Result = false;
+                response.Message = "Incorrect Email";
+            }
+            return response;
         }
-
 
         public void UpdateUser(User user)
         {

@@ -13,10 +13,12 @@ namespace TPI_Integrador_Prog3.Services.Implementations
     {
         private readonly IReviewRepository _reviewRepository;
         private readonly IMapper _mapper;
-        public ReviewService(IReviewRepository reviewRepository, IMapper mapper)
+        private readonly IUserRepository _userRepository;
+        public ReviewService(IReviewRepository reviewRepository,IUserRepository userRepository, IMapper mapper)
         {
             _reviewRepository = reviewRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         public List<Review> GetReviewsByGameId(int gameId)
@@ -30,9 +32,14 @@ namespace TPI_Integrador_Prog3.Services.Implementations
 
         public void CreateReview(ReviewDto reviewdto)
         {
-            var ReviewNew = _mapper.Map<Review>(reviewdto);
-
-            _reviewRepository.CreateReview(ReviewNew);
+            var user = _userRepository.GetUserById(reviewdto.ClientId);
+            reviewdto.UsernameInReview = user.UserName;
+            if (reviewdto.UsernameInReview != null)
+            {
+                var ReviewNew = _mapper.Map<Review>(reviewdto);
+                _reviewRepository.CreateReview(ReviewNew);
+            }
+            
         }
         public void UpdateReview(int reviewid, ReviewDto reviewdto)
         {

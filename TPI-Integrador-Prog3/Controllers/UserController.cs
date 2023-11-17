@@ -9,7 +9,7 @@ using TPI_Integrador_Prog3.Services.Interfaces;
 namespace TPI_Integrador_Prog3.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize]
+    
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -19,12 +19,14 @@ namespace TPI_Integrador_Prog3.Controllers
             _userService = userService;
         }
         [HttpGet]
+        [Authorize("Admin")]
         public IActionResult GetAllUsers()
         {
             return Ok(_userService.GetAllUsers());
         }
 
         [HttpPost("CreateClient")]
+        [Authorize("All")]
         public IActionResult CreateClient([FromBody] UserDto clientDto)
         {
 
@@ -33,6 +35,7 @@ namespace TPI_Integrador_Prog3.Controllers
         }
 
         [HttpPost("CreateAdmin")]
+        [Authorize("Admin")]
         public IActionResult CreateAdmin([FromBody] UserDto adminDto)
         {
 
@@ -40,34 +43,29 @@ namespace TPI_Integrador_Prog3.Controllers
             return StatusCode(201);
         }
         [HttpPut("{idUser}")]
+        [Authorize("Client")]
         public IActionResult UpdateUser(int id, UserDto user)
         {
             _userService.UpdateUser(id, user);
             return Ok();
         }
         [HttpDelete("DeleteUserById/{id}")]
+        [Authorize("Admin")]
         public IActionResult DeleteUserById(int id)
         {
             _userService.DeleteUserById(id);
             return Ok("User Delete");
         }
         [HttpDelete("DeleteUserByEmail/{email}")]
+        [Authorize("Admin")]
         public IActionResult DeleteUserByEmail(string email)
         {
             _userService.DeleteUserByEmail(email);
             return Ok("User Delete");
         }
-        [HttpPost("validate")]
-        public IActionResult ValidateUser([FromBody] User user)
-        {
-            var result = _userService.ValidateUser(user.UserName, user.Password);
-            if (result == null)
-            {
-                return BadRequest();
-            }
-            return Ok(result);
-        }
+        
         [HttpGet("GetClientByUsername/{username}")]
+        [Authorize("Admin")]
         public IActionResult GetUserByUserName(string username)
         {
             var result = _userService.GetUserByUserName(username);
@@ -79,6 +77,7 @@ namespace TPI_Integrador_Prog3.Controllers
         }
 
         [HttpGet("GetClientByEmail{email}")]
+        [Authorize("Admin")]
         public IActionResult GetUserByEmail(string email)
         {
             var result = _userService.GetUserByEmail(email);

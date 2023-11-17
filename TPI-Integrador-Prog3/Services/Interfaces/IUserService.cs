@@ -5,7 +5,7 @@ namespace TPI_Integrador_Prog3.Services.Interfaces
 {
     public interface IUserService
     {
-        BaseResponse ValidateUser(string username, string password);
+       
         IEnumerable<User> GetAllUsers();
         void CreateClient(UserDto user);
         void CreateAdmin(UserDto user);

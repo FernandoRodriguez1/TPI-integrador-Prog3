@@ -19,6 +19,7 @@ namespace TPI_Integrador_Prog3.Controllers
             _gameService = gameService;
         }
         [HttpGet("GetAllGames")]
+        [Authorize("All")]
         public IActionResult GetAllGames()
         {
             return Ok(_gameService.GetAllGames());
@@ -34,6 +35,7 @@ namespace TPI_Integrador_Prog3.Controllers
         }
 
         [HttpPost]
+        [Authorize("Admin")]
         public IActionResult CreateGame(GamesDto game)
         {
             _gameService.CreateGame(game);
@@ -41,6 +43,7 @@ namespace TPI_Integrador_Prog3.Controllers
         }
 
         [HttpPut]
+        [Authorize("Admin")]
         public IActionResult UpdateGame(int id, GamesDto game)
         {
             if (_gameService.GetGameById(id) == null)
@@ -52,6 +55,7 @@ namespace TPI_Integrador_Prog3.Controllers
         }
 
         [HttpDelete]
+        [Authorize("Admin")]
         public IActionResult DeleteGame(int gameid)
         {
             if (_gameService.GetGameById(gameid) == null)
