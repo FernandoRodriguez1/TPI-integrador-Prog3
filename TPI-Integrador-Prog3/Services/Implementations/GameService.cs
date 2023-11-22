@@ -18,10 +18,11 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             _gameRepository = gamesrepository;
             _mapper = mapper;
         }
-        public List<Game> GetAllGames()
+        public List<GamesDto> GetAllGames()
         {
-            return _gameRepository.GetAllGames().ToList();
+            return _gameRepository.GetAllGames();
         }
+        
         public void CreateGame(GamesDto gamesdto)
         {
             var GameNew = _mapper.Map<Game>(gamesdto);
@@ -55,10 +56,8 @@ namespace TPI_Integrador_Prog3.Services.Implementations
         {
             return _gameRepository.GetGameById(gameId);
         }
-        public Game GetByGameName(string name)
-        {
-            return _gameRepository.GetGameByName(name);
-        }
+       
 
+        
     }
 }

@@ -11,7 +11,7 @@ using TPI_Integrador_Prog3.DBContexts;
 namespace TPI_Integrador_Prog3.Migrations
 {
     [DbContext(typeof(GamesContext))]
-    [Migration("20231115234705_InitialMigration")]
+    [Migration("20231120213058_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />

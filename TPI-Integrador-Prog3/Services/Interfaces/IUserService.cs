@@ -6,7 +6,7 @@ namespace TPI_Integrador_Prog3.Services.Interfaces
     public interface IUserService
     {
        
-        IEnumerable<User> GetAllUsers();
+        IEnumerable<UserDto> GetAllUsers();
         void CreateClient(UserDto user);
         void CreateAdmin(UserDto user);
         void UpdateUser(int id, UserDto user);

@@ -12,9 +12,10 @@ namespace TPI_Integrador_Prog3.Entities
         public string Gender { get; set; }
         public string Synopsis { get; set; }
         public int GameRating { get; set; }
-        public DateTime? DepartureDate { get; set; }
+        public DateTime? DepartureDate { get; set; } = DateTime.Now;
         public string Developer { get; set; }
         public ICollection<Review> Reviews { get; set; }
+        
         public ICollection<Client> Clients { get; set; }
 
     }

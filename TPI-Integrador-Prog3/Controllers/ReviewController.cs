@@ -38,19 +38,16 @@ namespace TPI_Integrador_Prog3.Controllers
         }
         [HttpPost("CreateReview")]
         [Authorize("Client")]
-        public IActionResult CreateReview([FromBody] ReviewDto reviewdto)
+        public IActionResult CreateReview([FromBody] ReviewPostDto reviewdto)
         {
             _reviewService.CreateReview(reviewdto);
             return Ok("Review Created");
         }
         [HttpPut("UpdateReview/{reviewid}")]
         [Authorize("Client")]
-        public IActionResult UpdateReview(int reviewid, ReviewDto reviewdto)
+        public IActionResult UpdateReview(int reviewid, ReviewPostDto reviewdto)
         {
-            if (_reviewService.GetReviewById(reviewid) == null)
-            {
-                return BadRequest("La review no existe");
-            }
+
             _reviewService.UpdateReview(reviewid, reviewdto);
             return Ok("Review Updated");
         }
@@ -61,6 +58,16 @@ namespace TPI_Integrador_Prog3.Controllers
         {
             _reviewService.DeleteReview(reviewid);
             return Ok("Review Deleted");
+        }
+        [HttpGet("GetReviewById/{reviewid}")]
+        [Authorize("All")]
+        public IActionResult GetReviewById (int reviewid)
+        {
+            if (_reviewService.GetReviewById(reviewid) == null)
+            {
+                return BadRequest("La review no existe");
+            }
+            return Ok(_reviewService.GetReviewById(reviewid));
         }
     }
 }

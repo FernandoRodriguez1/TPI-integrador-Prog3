@@ -21,35 +21,35 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             _userRepository = userRepository;
         }
 
-        public List<Review> GetReviewsByGameId(int gameId)
+        public List<ReviewDto> GetReviewsByGameId(int gameId)
         {
             return _reviewRepository.GetReviewsByGameId(gameId).ToList();
         }
-        public IEnumerable<Review> GetReviews()
+        public IEnumerable<ReviewDto> GetReviews()
         {
             return _reviewRepository.GetAllReviews();
         }
 
-        public void CreateReview(ReviewDto reviewdto)
+        public void CreateReview(ReviewPostDto reviewdto)
         {
-            var user = _userRepository.GetUserById(reviewdto.ClientId);
-            reviewdto.UsernameInReview = user.UserName;
+
             if (reviewdto.UsernameInReview != null)
             {
                 var ReviewNew = _mapper.Map<Review>(reviewdto);
+                
                 _reviewRepository.CreateReview(ReviewNew);
             }
             
         }
-        public void UpdateReview(int reviewid, ReviewDto reviewdto)
+        public void UpdateReview(int reviewid, ReviewPostDto reviewdto)
         {
             var existsReview = _reviewRepository.GetReviewById(reviewid);
             if (existsReview == null)
             {
                 throw new Exception("Review NO encontrada");
             }
+            
             existsReview.GameId = reviewdto.GameId;
-            existsReview.ClientId = existsReview.ClientId;
             existsReview.UserNameInReview = reviewdto.UsernameInReview;
             existsReview.UserCommentInReview = reviewdto.UserCommentInReview;
             existsReview.UserRatingInReview = reviewdto.UserRatingInReview;

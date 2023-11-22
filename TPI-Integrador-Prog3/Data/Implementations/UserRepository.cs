@@ -11,11 +11,22 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         {
         }
 
-
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<UserDto> GetAllUsers()
         {
-            return _context.Users;
+            var usersDtoList = _context.Users
+                .Select(user => new UserDto
+                {
+                    
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Password = String.Empty,
+                    
+                })
+                .ToList();
+
+            return usersDtoList;
         }
+
         public void CreateClient(User user)
         {
             _context.Users.Add(user);

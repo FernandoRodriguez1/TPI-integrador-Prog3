@@ -5,7 +5,7 @@ namespace TPI_Integrador_Prog3.Data.Interfaces
 {
     public interface IUserRepository : IRepository
     {
-        IEnumerable<User> GetAllUsers();
+        IEnumerable<UserDto> GetAllUsers();
         User? GetUserById(int userId);
         User? GetUserByUserName(string username);
         BaseResponse ValidateUser(AuthenticateDto authenticatedto);

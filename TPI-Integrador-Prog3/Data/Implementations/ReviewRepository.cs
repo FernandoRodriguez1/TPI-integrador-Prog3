@@ -1,6 +1,7 @@
 ﻿using TPI_Integrador_Prog3.Data.Interfaces;
 using TPI_Integrador_Prog3.DBContexts;
 using TPI_Integrador_Prog3.Entities;
+using TPI_Integrador_Prog3.Models;
 
 namespace TPI_Integrador_Prog3.Data.Implementations
 {
@@ -13,9 +14,21 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         {
             return _context.Reviews.Find(reviewid);
         }
-        public IEnumerable<Review> GetReviewsByGameId(int gameId)
+        public IEnumerable<ReviewDto> GetReviewsByGameId(int gameId)
         {
-            return _context.Reviews.Where(r => r.GameId == gameId).ToList();
+            var reviewsDtoList = _context.Reviews.Where(x=> x.GameId == gameId)
+               .Select(review => new ReviewDto
+               {
+                   Id = review.Id,
+                   GameId = review.GameId,
+                   UsernameInReview = review.UserNameInReview,
+                   UserCommentInReview = review.UserCommentInReview,
+                   CreationDate = review.CreationDate
+
+               })
+               .ToList();
+
+            return reviewsDtoList;
         }
 
         public void CreateReview(Review newReview)
@@ -39,9 +52,21 @@ namespace TPI_Integrador_Prog3.Data.Implementations
             }
         }
 
-        public IEnumerable<Review> GetAllReviews()
+        public IEnumerable<ReviewDto> GetAllReviews()
         {
-            return _context.Reviews.ToList();
+            var reviewsDtoList = _context.Reviews
+                .Select(review => new ReviewDto
+                {
+                    Id=review.Id,
+                    GameId = review.GameId,
+                    UsernameInReview = review.UserNameInReview,
+                    UserCommentInReview = review.UserCommentInReview,
+                    CreationDate = review.CreationDate
+
+                })
+                .ToList();
+
+            return reviewsDtoList;
         }
 
 

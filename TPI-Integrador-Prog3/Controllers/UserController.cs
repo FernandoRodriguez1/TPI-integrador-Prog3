@@ -29,7 +29,7 @@ namespace TPI_Integrador_Prog3.Controllers
         [Authorize("All")]
         public IActionResult CreateClient([FromBody] UserDto clientDto)
         {
-
+            
             _userService.CreateClient(clientDto);
             return StatusCode(201);
         }

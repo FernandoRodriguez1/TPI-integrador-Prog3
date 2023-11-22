@@ -5,11 +5,12 @@ namespace TPI_Integrador_Prog3.Services.Interfaces
 {
     public interface IGameService
     {
-        public List<Game> GetAllGames();
+        public List<GamesDto> GetAllGames();
         void CreateGame(GamesDto game);
         void UpdateGame(int id, GamesDto game);
         void DeleteGame(int gameId);
         Game GetGameById(int gameId);
+        
 
     }
 }

@@ -9,7 +9,7 @@ using TPI_Integrador_Prog3.Services.Interfaces;
 namespace TPI_Integrador_Prog3.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize]
+    
     [ApiController]
     public class GamesController : ControllerBase
     {
@@ -18,12 +18,14 @@ namespace TPI_Integrador_Prog3.Controllers
         {
             _gameService = gameService;
         }
+
         [HttpGet("GetAllGames")]
         [Authorize("All")]
         public IActionResult GetAllGames()
         {
             return Ok(_gameService.GetAllGames());
         }
+
         [HttpGet("GetGameById/{id}")]
         public IActionResult GetGameById(int id)
         {

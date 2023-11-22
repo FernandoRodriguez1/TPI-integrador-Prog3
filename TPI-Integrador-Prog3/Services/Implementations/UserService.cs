@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Text.RegularExpressions;
 using TPI_Integrador_Prog3.Data.Interfaces;
 using TPI_Integrador_Prog3.DBContexts;
 using TPI_Integrador_Prog3.Entities;
@@ -19,17 +20,28 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             _context = context;
             _userRepository = userRepository;
         }
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<UserDto> GetAllUsers()
         {
             return _userRepository.GetAllUsers();
         }
         public void CreateClient(UserDto userDto)
         {
+            // Verifica la contraseña antes de crear el cliente
+            if (!ValidatePassword(userDto.Password))
+            {
+                throw new Exception("The password does not meet the requirements. it must have at least one number and one special character");
+            }
+
             var newUser = _mapper.Map<Client>(userDto);
             _userRepository.CreateClient(newUser);
         }
         public void CreateAdmin(UserDto userDto)
         {
+            if (!ValidatePassword(userDto.Password))
+            {
+                throw new Exception("The password does not meet the requirements.");
+            }
+
             var newUser = _mapper.Map<Admin>(userDto);
             _userRepository.CreateAdmin(newUser);
         }
@@ -39,6 +51,10 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             if (existsUser == null)
             {
                 throw new Exception("Usuario NO encontrado");
+            }
+            if (!ValidatePassword(user.Password))
+            {
+                throw new Exception("The password does not meet the requirements.");
             }
             existsUser.UserName = user.UserName;
             existsUser.Email = user.Email;
@@ -77,7 +93,44 @@ namespace TPI_Integrador_Prog3.Services.Implementations
         {
             return _userRepository.GetUserByEmail(email);
         }
+        static bool ValidatePassword(string password)
+        {
+            // Verifica la longitud de la contraseña
+            if (password.Length <= 6 && password.Length >= 12)
+            {
+                return false;
+            }
+            // verifica que no tenga espacios
+            if (password.Contains(" "))
+            {
+                return false;
+            }
+            // verifica que tenga al menos una mayúscula
+            if (!Regex.IsMatch(password, "[A-Z]"))
+            {
+                return false;
+            }
+            // Verifica al menos un carácter
+            if (!Regex.IsMatch(password, "[a-zA-Z]"))
+            {
+                return false;
+            }
 
-      
+            // Verifica al menos un número
+            if (!Regex.IsMatch(password, "[0-9]"))
+            {
+                return false;
+            }
+
+            // Verifica al menos un carácter especial
+            if (!Regex.IsMatch(password, "[!@#$%^&*(),.?\":{}|<>]"))
+            {
+                return false;
+            }
+
+            // Si ha pasado todas las verificaciones
+            return true;
+        }
+
     }
 }
