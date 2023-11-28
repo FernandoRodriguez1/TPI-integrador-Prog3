@@ -19,15 +19,15 @@ namespace TPI_Integrador_Prog3.Controllers
 
         public AuthenticateController(IUserService UserService, IConfiguration configuration, IAuthenticateService authenticateService)
         {
-            _userService = UserService;
-            _config = configuration;
-            _authenticateService = authenticateService;
+            _userService = UserService;//Hacemos la inyección del servicio de usuario.
+            _config = configuration; //Hacemos la inyección para poder usar el appsettings.json.
+            _authenticateService = authenticateService;//Inyectamos el autenticador.
         }
 
         [HttpPost]
         public IActionResult Authenticate([FromBody] AuthenticateDto authenticatedto)
         {
-            BaseResponse validarUsuarioResult = _authenticateService.ValidateUser(authenticatedto);
+            BaseResponse validarUsuarioResult = _authenticateService.ValidateUser(authenticatedto);//El método post devolverá una Respuesta mockeada, alojada en los models.
             if (validarUsuarioResult.Message == "wrong username")
             {
                 return BadRequest(validarUsuarioResult.Message);
@@ -41,23 +41,24 @@ namespace TPI_Integrador_Prog3.Controllers
                 User? user = _userService.GetUserByUserName(authenticatedto.UserName); 
                 var securityPassword = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Authentication:SecretForKey"])); 
 
-                var signature = new SigningCredentials(securityPassword, SecurityAlgorithms.HmacSha256); 
+                var signature = new SigningCredentials(securityPassword, SecurityAlgorithms.HmacSha256); //Hasheamos la Secret Key + la Payload + el Header.
 
-                var claimsForToken = new List<Claim>();                        
+                var claimsForToken = new List<Claim>();  //Creamos una lista de Claims (Requisitos) 
+                //Son piezas de informacíon necesarias para concretar la creación del Token y la autorización.                       
                 claimsForToken.Add(new Claim("sub", user.Id.ToString()));      
                 claimsForToken.Add(new Claim("username", user.UserName));
                 claimsForToken.Add(new Claim("usertype", user.UserType.ToString()));
 
-                var jwtSecurityToken = new JwtSecurityToken( 
+                var jwtSecurityToken = new JwtSecurityToken(  //Creamos el token con todo lo necesario para que funcione.
                     _config["Authentication:Issuer"],
                     _config["Authentication:Audience"],
                     claimsForToken,
-                    DateTime.UtcNow,
-                    DateTime.UtcNow.AddHours(1), 
+                    DateTime.UtcNow,//Aca le podriamos pasar un tiempo en el cual entrara en validez el token, asi de esta forma, entrara de manera inmediata a ser vigente.
+                    DateTime.UtcNow.AddHours(1), //Le damos una hora de validez al token.
                     signature);
 
-                string tokenToReturn = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-                return Ok(tokenToReturn); 
+                string tokenToReturn = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);//Escribimos el token mediante el método WriteToken().
+                return Ok(tokenToReturn); //Devolvemos el TOKEN al pegarle al endpoint.
             }
             return BadRequest();
         }

@@ -28,27 +28,35 @@ builder.Services.AddSwaggerGen(setupAction =>
 {
     setupAction.AddSecurityDefinition("TPI-Integrador-Prog3BearerAuth", new OpenApiSecurityScheme() //Esto va a permitir usar swagger con el token.
     {
-        Type = SecuritySchemeType.Http,
+        Type = SecuritySchemeType.Http, //utilizando un esquema de seguridad basado en HTTP.
         Scheme = "Bearer",
         Description = "Acá pegar el token generado al loguearse."
     });
 
-    setupAction.AddSecurityRequirement(new OpenApiSecurityRequirement
+    setupAction.AddSecurityRequirement(new OpenApiSecurityRequirement //: Este método se utiliza para agregar requisitos de seguridad a Swagger. 
+    //2- creando una nueva instancia de OpenApiSecurityRequirement, que representa los requisitos de seguridad para Swagger.
+
+
     {
         {
-            new OpenApiSecurityScheme
+            new OpenApiSecurityScheme //especificando un esquema de seguridad
             {
-                Reference = new OpenApiReference
+                Reference = new OpenApiReference //estableciendo una referencia al esquema de seguridad.
                 {
-                    Type = ReferenceType.SecurityScheme,
+                    Type = ReferenceType.SecurityScheme, //Indica que la referencia es de tipo "SecurityScheme", hace referencia a un esquema de seguridad.
                     Id = "TPI-Integrador-Prog3BearerAuth" } //Tiene que coincidir con el id seteado arriba en la definición
-                }, new List<string>() }
+                }, new List<string>() } //Esta proporcionando una lista vacía de ámbitos (scopes). Este es un lugar donde normalmente
+                                        //se especificarían los ámbitos requeridos para acceder a las rutas protegidas.
     });
 }); ;
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+//configura AutoMapper para que el mismo pueda realizar asignaciones automáticas entre objetos. Los perfiles de mapeo se definen
+//en las assemblies cargadas en el dominio de la aplicación, lo que permite a AutoMapper descubrir y utilizar esos perfiles durante la ejecución.
+//Ademas funciona para que cuando pasemos un DTO, se mapeen sus datos correctamente en la Base de Datos de su respectiva ENTITY.
 
 //Cambiar a SQL Server - appsettings.json
+//Hacemos la inyección de dependencia de nuestro contexto para que utilice X base de datos.
+//Arrow function para indicar que las "options" sean del tipo de la base de datos que queremos manejar
 builder.Services.AddDbContext<GamesContext>(dbContextOptions => dbContextOptions.UseSqlite(
     builder.Configuration["DB:ConnectionStrings"]).EnableDetailedErrors());
 
@@ -96,7 +104,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseHttpsRedirection(); //redirigir automáticamente las solicitudes HTTP a HTTPS
+//Garantiza que las comunicaciones entre el cliente y el servidor web se realicen de manera segura a través de HTTPS en lugar de HTTP,
+//lo que cifra la información transmitida y ayuda a proteger la integridad y confidencialidad de los datos.
 
 app.UseAuthentication();
 
