@@ -7,7 +7,7 @@ namespace TPI_Integrador_Prog3.Entities
     {
         public Client()
         {
-            UserType = Enum.UserType.Client;
+            UserType = Enum.UserType.Client; //Dentro del constructor asignamos el tipo de UserType, propio del Client.
         }
         public ICollection<Game> Games { get; set; }
         public ICollection<Review> Reviews { get; set; }

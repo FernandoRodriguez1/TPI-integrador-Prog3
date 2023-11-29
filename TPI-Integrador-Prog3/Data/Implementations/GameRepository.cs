@@ -16,8 +16,8 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         public List<GamesDto> GetAllGames()
         {
 
-            var gamesDtoList = _context.Games
-                .Select(game => new GamesDto
+            var gamesDtoList = _context.Games //Agarramos los juegos
+                .Select(game => new GamesDto //Seleccionamos por cada juego, el dto para que obtenga solo los datos que queremos
                 {
                     GameName = game.GameName,
                     Gender = game.Gender,
@@ -28,7 +28,7 @@ namespace TPI_Integrador_Prog3.Data.Implementations
                 })
                 .ToList();
 
-            return gamesDtoList;
+            return gamesDtoList; //Retornamos todos los juegos en una lista de dtos
         }
 
         public void CreateGame(Game game)
@@ -48,10 +48,10 @@ namespace TPI_Integrador_Prog3.Data.Implementations
 
         public void DeleteGame(int gameId)
         {
-            var gameToDelete = _context.Games.Find(gameId);
-            if (gameToDelete != null)
+            var gameToDelete = _context.Games.Find(gameId); //obtenemos el juego por la id
+            if (gameToDelete != null) //verificamos si es nulo es decir si no existe
             {
-                _context.Games.Remove(gameToDelete);
+                _context.Games.Remove(gameToDelete); //lo borramos de una forma fisica
                 _context.SaveChanges();
             }
         }

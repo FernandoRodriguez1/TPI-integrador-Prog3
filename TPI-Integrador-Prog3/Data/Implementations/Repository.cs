@@ -11,9 +11,9 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         {
             this._context = context;
         }
-        public bool SaveChanges()
+        public bool SaveChanges() //Aplicamos el método del contrato, guarda los cambios en la base de datos si hay un cambio devuelve "true".
         {
-            return (_context.SaveChanges() >= 0);
+            return (_context.SaveChanges() >= 0);//Ejecutamos el método con nuestra variable de instancia que tiene la inyección de dependencia.
         }
     }
 }

@@ -48,13 +48,13 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             {
                 throw new Exception("Review NO encontrada");
             }
-            
+            // Mapear las propiedades relevantes de manera individual, del DTO a la entidad existente.
             existsReview.GameId = reviewdto.GameId;
             existsReview.UserNameInReview = reviewdto.UsernameInReview;
             existsReview.UserCommentInReview = reviewdto.UserCommentInReview;
             existsReview.UserRatingInReview = reviewdto.UserRatingInReview;
             existsReview.CreationDate = reviewdto.CreationDate;
-
+            // Actualizar la entidad en el repositorio
             _reviewRepository.UpdateReview(existsReview);
         }
         public void DeleteReview(int reviewId)

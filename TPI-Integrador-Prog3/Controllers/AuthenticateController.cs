@@ -53,7 +53,7 @@ namespace TPI_Integrador_Prog3.Controllers
                     _config["Authentication:Issuer"],
                     _config["Authentication:Audience"],
                     claimsForToken,
-                    DateTime.UtcNow,//Aca le podriamos pasar un tiempo en el cual entrara en validez el token, asi de esta forma, entrara de manera inmediata a ser vigente.
+                    DateTime.UtcNow,//Aca le podriamos pasar un tiempo en el cual entrara en validez el token, asi de esta forma entrara de manera inmediata a ser vigente.
                     DateTime.UtcNow.AddHours(1), //Le damos una hora de validez al token.
                     signature);
 

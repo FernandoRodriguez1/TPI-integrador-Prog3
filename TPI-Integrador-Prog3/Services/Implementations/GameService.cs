@@ -38,12 +38,13 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             {
                 throw new Exception("Juego NO encontrado");
             }
+            // Mapear las propiedades relevantes de manera individual, del DTO a la entidad existente.
             existsGame.GameRating = gamedto.GameRating;
             existsGame.GameName = gamedto.GameName;
             existsGame.Synopsis = gamedto.Synopsis;
             existsGame.Developer = gamedto.Developer;
             existsGame.Gender = gamedto.Gender;
-
+            // Actualizar la entidad en el repositorio
             _gameRepository.UpdateGame(existsGame);
         }
 

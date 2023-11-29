@@ -16,8 +16,8 @@ namespace TPI_Integrador_Prog3.Data.Implementations
         }
         public IEnumerable<ReviewDto> GetReviewsByGameId(int gameId)
         {
-            var reviewsDtoList = _context.Reviews.Where(x=> x.GameId == gameId)
-               .Select(review => new ReviewDto
+            var reviewsDtoList = _context.Reviews.Where(x=> x.GameId == gameId) //buscamos la review que coincida con el gameId enviado por el endpoint
+               .Select(review => new ReviewDto //seleccionamos todas las reviews y devolvemos un dto de cada una 
                {
                    Id = review.Id,
                    GameId = review.GameId,
@@ -28,7 +28,7 @@ namespace TPI_Integrador_Prog3.Data.Implementations
                })
                .ToList();
 
-            return reviewsDtoList;
+            return reviewsDtoList;//retornamos las reviews dtos en formato lista
         }
 
         public void CreateReview(Review newReview)

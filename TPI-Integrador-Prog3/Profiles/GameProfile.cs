@@ -9,7 +9,7 @@ namespace TPI_Integrador_Prog3.Profiles
     {
         public GameProfile()
         {
-            CreateMap<GamesDto, Game>();
+            CreateMap<GamesDto, Game>(); 
             CreateMap<Game, GamesDto>();
         }
     }

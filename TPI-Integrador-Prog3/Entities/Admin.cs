@@ -4,7 +4,7 @@
     {
         public Admin()
         {
-            UserType = Enum.UserType.Admin;
+            UserType = Enum.UserType.Admin; //Dentro del constructor asignamos el UserType propio del Admin.
         }
     }
 }

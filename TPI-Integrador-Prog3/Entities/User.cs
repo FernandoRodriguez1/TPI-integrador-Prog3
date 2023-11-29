@@ -15,7 +15,7 @@ namespace TPI_Integrador_Prog3.Entities
         public string Password { get; set; }
 
         [Required]
-        public UserType UserType { get; set; } = UserType.Client;
+        public UserType UserType { get; set; } = UserType.Client; //Definimos como predeterminado el tipo Client.
 
 
     }

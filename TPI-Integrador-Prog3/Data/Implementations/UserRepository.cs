@@ -19,7 +19,7 @@ namespace TPI_Integrador_Prog3.Data.Implementations
                     
                     UserName = user.UserName,
                     Email = user.Email,
-                    Password = String.Empty,
+                    Password = String.Empty, //esto lo ponemos para que el admin al hacer un getall, no sepa la contraseña de los usuarios
                     
                 })
                 .ToList();

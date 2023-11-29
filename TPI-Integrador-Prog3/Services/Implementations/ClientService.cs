@@ -13,11 +13,7 @@ namespace TPI_Integrador_Prog3.Services.Implementations
             _clientRepository = clientRepository;
         }
 
-        public Client GetClientById(int userId)
-        {
-            return _clientRepository.GetClientById(userId);
-        }
-
+      
 
     }
 }
